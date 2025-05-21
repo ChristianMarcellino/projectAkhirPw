@@ -1,0 +1,69 @@
+@extends('adminlte::page')
+
+@section('title', 'Tambah Proyek')
+
+@section('content_header')
+    <h1>Tambah Proyek</h1>
+@stop
+
+@section('content')
+<div class="card">
+    <div class="card-body">
+        <form action="{{ route('proyek.store') }}" method="POST">
+            @csrf
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="no_pbg">No PBG Proyek</label>
+                        <input type="text" name="no_pbg" class="form-control @error('no_pbg') is-invalid @enderror" value="{{ old('no_pbg') }}" maxlength="18">
+                        @error('no_pbg')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nama_proyek">Nama Proyek</label>
+                        <input type="text" name="nama_proyek" class="form-control @error('nama_proyek') is-invalid @enderror" value="{{ old('nama_proyek') }}" maxlength="50">
+                        @error('nama_proyek')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jumlah_unit">Jumlah Unit</label>
+                        <input type="number" name="jumlah_unit" class="form-control @error('jumlah_unit') is-invalid @enderror" value="{{ old('jumlah_unit') }}">
+                        @error('jumlah_unit')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="harga_rumah">Harga Rumah</label>
+                        <input type="number" name="harga_rumah" class="form-control @error('harga_rumah') is-invalid @enderror" value="{{ old('harga_rumah') }}">
+                        @error('harga_rumah')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="luas_tanah">Luas Tanah</label>
+                        <input type="number" name="luas_tanah" class="form-control @error('luas_tanah') is-invalid @enderror" value="{{ old('luas_tanah') }}">
+                        @error('luas_tanah')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="text-right">
+                <a href="{{ route('rumah.index') }}" class="btn btn-secondary">Kembali</a>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+        </form>
+    </div>
+</div>
+@stop
