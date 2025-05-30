@@ -16,7 +16,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="no_shm_rumah">No SHM Rumah</label>
-                        <input type="text" value="{{$rumah->no_shm_rumah}}" name="no_shm_rumah" class="form-control @error('no_shm_rumah') is-invalid @enderror" value="{{ old('no_shm_rumah') }}" maxlength="18">
+                        <input type="text" value="{{old('no_shm_rumah') ? old('no_shm_rumah') : $rumah>no_shm_rumah}}" name="no_shm_rumah" class="form-control" maxlength="18">
                         @error('no_shm_rumah')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -24,7 +24,7 @@
 
                     <div class="form-group">
                         <label for="blok_rumah">Blok Rumah</label>
-                        <input type="text" value="{{$rumah->blok_rumah}}" name="blok_rumah" class="form-control @error('blok_rumah') is-invalid @enderror" value="{{ old('blok_rumah') }}" maxlength="5">
+                        <input type="text" name="blok_rumah" class="form-control" value="{{ old('blok_rumah') ? old('blok_rumah') : $rumah>blok_rumah}}" maxlength="5">
                         @error('blok_rumah')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -32,7 +32,7 @@
 
                     <div class="form-group">
                         <label for="harga_dp">Harga DP</label>
-                        <input type="number"value="{{$rumah->harga_dp}}" name="harga_dp" class="form-control @error('harga_dp') is-invalid @enderror" value="{{ old('harga_dp') }}">
+                        <input type="number"value="{{old('harga_dp') ? old('harga_dp') : $rumah->harga_dp}}" name="harga_dp" class="form-control">
                         @error('harga_dp')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -42,7 +42,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="kelebihan_tanah">Kelebihan Tanah</label>
-                        <input type="number" value="{{$rumah->kelebihan_tanah}}" name="kelebihan_tanah" class="form-control @error('kelebihan_tanah') is-invalid @enderror" value="{{ old('kelebihan_tanah') }}">
+                        <input type="number" value="{{old('kelebihan_tanah') ? old('kelebihan_tanah') : $rumah->kelebihan_tanah}}" name="kelebihan_tanah" class="form-control">
                         @error('kelebihan_tanah')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -50,7 +50,7 @@
 
                     <div class="form-group">
                         <label for="status_rumah">Status Rumah</label>
-                        <select name="status_rumah" class="form-control @error('status_rumah') is-invalid @enderror">
+                        <select name="status_rumah" class="form-control">
                             <option value="">-- Pilih Status --</option>
                             <option value="Tersedia" {{ old('status_rumah',$rumah->status_rumah) == 'Tersedia' ? 'selected' : '' }}>Tersedia</option>
                             <option value="Booking" {{ old('status_rumah',$rumah->status_rumah) == 'Booking' ? 'selected' : '' }}>Booking</option>
@@ -63,7 +63,7 @@
 
                     <div class="form-group">
                         <label for="proyek_id">Proyek</label>
-                        <select name="proyek_id" class="form-control @error('proyek_id') is-invalid @enderror">
+                        <select name="proyek_id" class="form-control">
                             <option value="">-- Pilih Proyek --</option>
                             @foreach($proyek as $item)
                                 <option value="{{ $item->id }}" {{ old('proyek_id', $item->id) == $item->id ? 'selected' : '' }}>
