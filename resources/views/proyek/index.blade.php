@@ -20,7 +20,9 @@
                     <th>Jumlah Unit</th>
                     <th>Harga Rumah</th>
                     <th>Luas Tanah</th>
-                    <th>Aksi</th>
+                    <th>Harga Kelebihan Tanah</th>
+                    <th>Alamat</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,14 +34,15 @@
                         <td>{{ $item->jumlah_unit }}</td>
                         <td>Rp{{ number_format($item->harga_rumah, 0, ',', '.') }}</td>
                         <td>{{ $item->luas_tanah }} m²</td>
+                        <td>Rp{{ number_format($item->harga_kelebihan_tanah, 0, ',', '.') }}</td>
+                        <td>{{ $item->alamat }}</td>
                         <td>
                             <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm"
                                 title="Edit"
-                                onclick="window.location='{{ route('proyek.edit', $item->id) }}'" />
+                                onclick="window.location='{{ route('proyek.edit', $item->no_pbg) }}'" />
 
-                            <form action="{{ route('proyek.destroy', $item->id) }}" method="POST"
-                                style="display:inline-block"
-                                onsubmit="return confirm('Yakin ingin menghapus proyek ini?')">
+                            <form action="{{ route('proyek.destroy', $item->no_pbg) }}" method="POST"
+                                style="display:inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <x-adminlte-button theme="danger" icon="fas fa-trash" size="sm" title="Hapus" type="submit" />

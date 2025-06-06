@@ -49,9 +49,9 @@ class RumahController extends Controller
             'no_shm_rumah'     => 'required|max:18|unique:rumah',
             'blok_rumah'       => 'required|max:5',
             'harga_dp'         => 'required',
-            'kelebihan_tanah'  => 'required',
-            'status_rumah'     => 'required|in:Tersedia,Booking,Terjual',
-            'proyek_id'        => 'required|exists:proyek,id',
+            'luas_tanah_rumah'  => 'required',
+            'booking'     => 'required|in:Tersedia,Booking,Terjual',
+            'no_pbg'        => 'required'
         ]);
 
         Rumah::create($input);
@@ -89,7 +89,7 @@ class RumahController extends Controller
      */
     public function destroy(Rumah $rumah)
     {
-        $rumah-> destroy($rumah->id);
+        $rumah-> destroy();
         return redirect()->route('rumah.index')->with('success','Data Rumah Berhasil Dihapus');
     }
 }

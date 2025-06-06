@@ -67,15 +67,15 @@
                         <td>{{ $item->blok_rumah }}</td>
                         <td>Rp{{ number_format($item->harga_dp, 0, ',', '.') }}</td>
                         <td>{{ $item->proyek->nama_proyek ?? '-' }}</td>
-                        <td>{{ $item->kelebihan_tanah }}</td>
-                        <td>{{ $item->status_rumah }}</td>
-                        <td>Rp{{ number_format($item->proyek->harga_rumah + $item->kelebihan_tanah*1350000, 0, ',', '.') }}</td>
+                        <td>{{ $item->luas_tanah_rumah }}</td>
+                        <td>{{ $item->status_penjualan }}</td>
+                        {{-- <td>Rp{{ number_format($item->proyek->harga_rumah + (($item->luas_tanah_rumah - $item->proyek->luas_tanah)*1350000), 0, ',', '.') }}</td> --}}
                         <td>
                             <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm"
                                 title="Edit"
-                                onclick="window.location='{{ route('rumah.edit', $item->id) }}'" />
+                                onclick="window.location='{{ route('rumah.edit', $item->no_shm_rumah) }}'" />
 
-                            <form action="{{ route('rumah.destroy', $item->id) }}" method="POST"
+                            <form action="{{ route('rumah.destroy', $item->no_shm_rumah) }}" method="POST"
                                 style="display:inline-block"
                                 onsubmit="return confirm('Yakin ingin menghapus proyek ini?')">
                                 @csrf

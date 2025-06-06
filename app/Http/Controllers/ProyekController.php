@@ -34,7 +34,9 @@ class ProyekController extends Controller
             'nama_proyek' => 'required|unique:proyek',
             'jumlah_unit' => 'required',
             'harga_rumah' => 'required',
-            'luas_tanah' => 'required'
+            'luas_tanah' => 'required',
+            'alamat' => 'required',
+            'harga_kelebihan_tanah' => 'required'
         ]);
 
         Proyek::create($input);
@@ -56,7 +58,7 @@ class ProyekController extends Controller
      */
     public function edit(Proyek $proyek)
     {
-        //
+        return view('proyek.edit', compact('proyek'));
     }
 
     /**
