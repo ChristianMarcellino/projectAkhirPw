@@ -3,7 +3,7 @@
 @section('title', 'Data Proyek')
 
 @section('content_header')
-    <h1>Data Proyek</h1>
+    <h1>@yield('title')</h1>
 @endsection
 
 @section('content')
@@ -42,8 +42,7 @@
                                 onclick="window.location='{{ route('proyek.edit', $item->no_pbg) }}'" />
 
                             <form action="{{ route('proyek.destroy', $item->no_pbg) }}" method="POST"
-                                style="display:inline-block"
-                                onsubmit="return confirm('Yakin ingin menghapus proyek ini?')">
+                                style="display:inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <x-adminlte-button theme="danger" icon="fas fa-trash" size="sm" title="Hapus" type="submit" />

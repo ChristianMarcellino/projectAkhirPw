@@ -76,8 +76,7 @@
                                 onclick="window.location='{{ route('rumah.edit', $item->id) }}'" />
 
                             <form action="{{ route('rumah.destroy', $item->id) }}" method="POST"
-                                style="display:inline-block"
-                                onsubmit="return confirm('Yakin ingin menghapus proyek ini?')">
+                                style="display:inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <x-adminlte-button theme="danger" icon="fas fa-trash" size="sm" title="Hapus" type="submit" />

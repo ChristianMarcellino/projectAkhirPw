@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Proyek;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ProyekController extends Controller
 {
@@ -58,7 +59,7 @@ class ProyekController extends Controller
      */
     public function edit(Proyek $proyek)
     {
-        //
+        return view('proyek.edit',compact('proyek'));
     }
 
     /**
@@ -66,7 +67,18 @@ class ProyekController extends Controller
      */
     public function update(Request $request, Proyek $proyek)
     {
-        //
+        $input = $request->validate([
+            'no_pbg' => ['required',Rule::unique('proyek','no_pbg')->ignore($proyek->no_pbg, 'no_pbg'),'max:19'],
+            'nama_proyek' => ['required',Rule::unique('proyek','nama_proyek')->ignore($proyek->no_pbg, 'no_pbg')],
+            'jumlah_unit' => 'required',
+            'harga_rumah' => 'required',
+            'luas_tanah' => 'required',
+            'harga_kelebihan_tanah' => 'required',
+            'alamat' => 'required'
+        ]);
+
+        $proyek->update($input);
+        return redirect()->route('proyek.index')->with('success', 'Proyek Berhasil Diubah');
     }
 
     /**
@@ -75,6 +87,6 @@ class ProyekController extends Controller
     public function destroy(Proyek $proyek)
     {
         $proyek->delete();
-        return redirect()->route('proyek.index')->with('success', 'Proyek Berhasil Disimpan');
+        return redirect()->route('proyek.index')->with('success', 'Proyek Berhasil Dihapus');
     }
 }
