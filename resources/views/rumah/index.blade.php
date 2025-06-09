@@ -85,7 +85,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="9" class="text-center">Tidak ada data proyek.</td>
+                        <td colspan="9" class="text-center">Tidak ada data Rumah.</td>
                     </tr>
                 @endforelse
             </tbody>
