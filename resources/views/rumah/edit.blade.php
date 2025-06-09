@@ -9,14 +9,14 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('rumah.update', $rumah->id) }}" method="POST">
+        <form action="{{ route('rumah.update', $rumah->no_shm_rumah) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="no_shm_rumah">No SHM Rumah</label>
-                        <input type="text" value="{{old('no_shm_rumah') ? old('no_shm_rumah') : $rumah>no_shm_rumah}}" name="no_shm_rumah" class="form-control" maxlength="18">
+                        <input type="text" value="{{old('no_shm_rumah') ? old('no_shm_rumah') : $rumah->no_shm_rumah}}" name="no_shm_rumah" class="form-control @error('no_shm_rumah') is-invalid @enderror" maxlength="16">
                         @error('no_shm_rumah')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -24,7 +24,7 @@
 
                     <div class="form-group">
                         <label for="blok_rumah">Blok Rumah</label>
-                        <input type="text" name="blok_rumah" class="form-control" value="{{ old('blok_rumah') ? old('blok_rumah') : $rumah>blok_rumah}}" maxlength="5">
+                        <input type="text" name="blok_rumah" class="form-control @error('blok_rumah') is-invalid @enderror" value="{{ old('blok_rumah') ? old('blok_rumah') : $rumah->blok_rumah}}" maxlength="5">
                         @error('blok_rumah')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -32,7 +32,7 @@
 
                     <div class="form-group">
                         <label for="harga_dp">Harga DP</label>
-                        <input type="number"value="{{old('harga_dp') ? old('harga_dp') : $rumah->harga_dp}}" name="harga_dp" class="form-control">
+                        <input type="number"value="{{old('harga_dp') ? old('harga_dp') : $rumah->harga_dp}}" name="harga_dp" class="form-control @error('harga_dp') is-invalid @enderror">
                         @error('harga_dp')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -41,37 +41,37 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="kelebihan_tanah">Kelebihan Tanah</label>
-                        <input type="number" value="{{old('kelebihan_tanah') ? old('kelebihan_tanah') : $rumah->kelebihan_tanah}}" name="kelebihan_tanah" class="form-control">
-                        @error('kelebihan_tanah')
+                        <label for="luas_tanah_rumah">Luas Tanah</label>
+                        <input type="number" value="{{old('luas_tanah_rumah') ? old('luas_tanah_rumah') : $rumah->luas_tanah_rumah}}" name="luas_tanah_rumah" class="form-control @error('luas_tanah_rumah') is-invalid @enderror">
+                        @error('luas_tanah_rumah')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="status_rumah">Status Rumah</label>
-                        <select name="status_rumah" class="form-control">
+                        <label for="status_penjualan">Status Rumah</label>
+                        <select name="status_penjualan" class="form-control @error('status_penjualan') is-invalid @enderror">
                             <option value="">-- Pilih Status --</option>
-                            <option value="Tersedia" {{ old('status_rumah',$rumah->status_rumah) == 'Tersedia' ? 'selected' : '' }}>Tersedia</option>
-                            <option value="Booking" {{ old('status_rumah',$rumah->status_rumah) == 'Booking' ? 'selected' : '' }}>Booking</option>
-                            <option value="Terjual" {{ old('status_rumah',$rumah->status_rumah) == 'Terjual' ? 'selected' : '' }}>Terjual</option>
+                            <option value="Tersedia" {{ old('status_penjualan',$rumah->status_penjualan) == 'Tersedia' ? 'selected' : '' }}>Tersedia</option>
+                            <option value="Booking" {{ old('status_penjualan',$rumah->status_penjualan) == 'Booking' ? 'selected' : '' }}>Booking</option>
+                            <option value="Terjual" {{ old('status_penjualan',$rumah->status_penjualan) == 'Terjual' ? 'selected' : '' }}>Terjual</option>
                         </select>
-                        @error('status_rumah')
+                        @error('status_penjualan')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="proyek_id">Proyek</label>
-                        <select name="proyek_id" class="form-control">
+                        <label for="no_pbg">Nama Proyek</label>
+                        <select name="no_pbg" class="form-control @error('no_pbg') is-invalid @enderror">
                             <option value="">-- Pilih Proyek --</option>
                             @foreach($proyek as $item)
-                                <option value="{{ $item->id }}" {{ old('proyek_id', $item->id) == $item->id ? 'selected' : '' }}>
+                                <option value="{{ $item->no_pbg }}" {{ old('no_pbg') ==  $item->no_pbg ? 'selected' : ($rumah->no_pbg == $item->no_pbg ? 'selected' : null) }}>
                                     {{ $item->nama_proyek }}
                                 </option>
                             @endforeach
                         </select>
-                        @error('proyek_id')
+                        @error('no_pbg')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>

@@ -41,37 +41,37 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="kelebihan_tanah">Kelebihan Tanah</label>
-                        <input type="number" name="kelebihan_tanah" class="form-control @error('kelebihan_tanah') is-invalid @enderror" value="{{ old('kelebihan_tanah') }}">
-                        @error('kelebihan_tanah')
+                        <label for="luas_tanah_rumah">Luas Tanah</label>
+                        <input type="number" name="luas_tanah_rumah" class="form-control @error('luas_tanah_rumah') is-invalid @enderror" value="{{ old('luas_tanah_rumah') }}">
+                        @error('luas_tanah_rumah')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="status_rumah">Status Rumah</label>
-                        <select name="status_rumah" class="form-control @error('status_rumah') is-invalid @enderror">
+                        <label for="status_penjualan">Status Rumah</label>
+                        <select name="status_penjualan" class="form-control @error('status_penjualan') is-invalid @enderror">
                             <option value="">-- Pilih Status --</option>
-                            <option value="Tersedia" {{ old('status_rumah') == 'Tersedia' ? 'selected' : '' }}>Tersedia</option>
-                            <option value="Booking" {{ old('status_rumah') == 'Booking' ? 'selected' : '' }}>Booking</option>
-                            <option value="Terjual" {{ old('status_rumah') == 'Terjual' ? 'selected' : '' }}>Terjual</option>
+                            <option value="Tersedia" {{ old('status_penjualan') == 'Tersedia' ? 'selected' : '' }}>Tersedia</option>
+                            <option value="Booking" {{ old('status_penjualan') == 'Booking' ? 'selected' : '' }}>Booking</option>
+                            <option value="Terjual" {{ old('status_penjualan') == 'Terjual' ? 'selected' : '' }}>Terjual</option>
                         </select>
-                        @error('status_rumah')
+                        @error('status_penjualan')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="proyek_id">Proyek</label>
-                        <select name="proyek_id" class="form-control @error('proyek_id') is-invalid @enderror">
+                        <label for="no_pbg">Nama Proyek</label>
+                        <select name="no_pbg" class="form-control @error('no_pbg') is-invalid @enderror">
                             <option value="">-- Pilih Proyek --</option>
                             @foreach($proyek as $item)
-                                <option value="{{ $item->id }}" {{ old('proyek_id') == $item->id ? 'selected' : '' }}>
+                                <option value="{{ $item->no_pbg }}" {{ old('no_pbg') == $item->no_pbg ? 'selected' : '' }}>
                                     {{ $item->nama_proyek }}
                                 </option>
                             @endforeach
                         </select>
-                        @error('proyek_id')
+                        @error('no_pbg')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>

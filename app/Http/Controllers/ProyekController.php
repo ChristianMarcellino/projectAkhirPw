@@ -43,7 +43,6 @@ class ProyekController extends Controller
         Proyek::create($input);
         return redirect()->route('proyek.index')->with('success', 'Proyek Berhasil Disimpan');
 
-
     }
 
     /**

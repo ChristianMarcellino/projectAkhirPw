@@ -35,7 +35,7 @@
                         <td>Rp{{ number_format($item->harga_rumah, 0, ',', '.') }}</td>
                         <td>{{ $item->luas_tanah }} m²</td>
                         <td>Rp{{ number_format($item->harga_kelebihan_tanah, 0, ',', '.') }}</td>
-                        <td>{{ $item->alamat }}
+                        <td>{{ $item->alamat }}</tdf>
                         <td>
                             <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm"
                                 title="Edit"
@@ -51,7 +51,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="text-center">Tidak ada data proyek.</td>
+                        <td colspan="9" class="text-center">Tidak ada data proyek.</td>
                     </tr>
                 @endforelse
             </tbody>

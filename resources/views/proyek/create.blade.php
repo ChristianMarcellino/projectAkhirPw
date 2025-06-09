@@ -32,7 +32,7 @@
 
                     <div class="form-group">
                         <label for="jumlah_unit">Jumlah Unit</label>
-                        <input type="number" name="jumlah_unit" class="form-control" value="{{ old('jumlah_unit') }}">
+                        <input type="number" name="jumlah_unit" class="form-control @error('jumlah_unit') is-invalid @enderror" value="{{ old('jumlah_unit') }}">
                         @error('jumlah_unit')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -42,7 +42,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="harga_rumah">Harga Rumah</label>
-                        <input type="number" name="harga_rumah" class="form-control" value="{{ old('harga_rumah') }}">
+                        <input type="number" name="harga_rumah" class="form-control @error('harga_rumah') is-invalid @enderror" value="{{ old('harga_rumah') }}">
                         @error('harga_rumah')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -50,7 +50,7 @@
 
                     <div class="form-group">
                         <label for="luas_tanah">Luas Tanah</label>
-                        <input type="number" name="luas_tanah" class="form-control" value="{{ old('luas_tanah') }}">
+                        <input type="number" name="luas_tanah" class="form-control @error('luas_tanah') is-invalid @enderror" value="{{ old('luas_tanah') }}">
                         @error('luas_tanah')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -58,7 +58,7 @@
 
                     <div class="form-group">
                         <label for="harga_kelebihan_tanah">Harga Kelebihan Tanah</label>
-                        <input type="number" name="harga_kelebihan_tanah" class="form-control" value="{{ old('harga_kelebihan_tanah') }}">
+                        <input type="number" name="harga_kelebihan_tanah" class="form-control @error('harga_kelebihan_tanah') is-invalid @enderror" value="{{ old('harga_kelebihan_tanah') }}">
                         @error('harga_kelebihan_tanah')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -66,7 +66,7 @@
 
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <input type="text" name="alamat" class="form-control" value="{{ old('alamat') }}">
+                        <input type="text" name="alamat" class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat') }}">
                         @error('alamat')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror

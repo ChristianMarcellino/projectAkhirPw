@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Rumah extends Model
 {
     protected $table ='rumah';
-    use HasUuids;
+    protected $primaryKey = 'no_shm_rumah';
+    public $incrementing = false;
+    protected $keyType = 'string'; 
 
     public function proyek(){
-        return $this->belongsTo(Proyek::class, 'proyek_id', 'id');
+        return $this->belongsTo(Proyek::class, 'no_pbg', 'no_pbg');
     }
-    protected $fillable = ['no_shm_rumah','blok_rumah','harga_dp','proyek_id','kelebihan_tanah','status_rumah'];
+    protected $fillable = ['no_shm_rumah','blok_rumah','luas_tanah_rumah','harga_dp','no_pbg','status_penjualan'];
 }

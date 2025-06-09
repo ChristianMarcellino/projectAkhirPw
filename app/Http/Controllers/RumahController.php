@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Rumah;
 use App\Models\Proyek;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class RumahController extends Controller
 {
@@ -15,11 +16,11 @@ class RumahController extends Controller
     {
 
         $query = Rumah::query();
-        if($request->filled('status_rumah')){
-            $query->where('status_rumah',$request->status_rumah);
+        if($request->filled('status_penjualan')){
+            $query->where('status_penjualan',$request->status_penjualan);
         }
-        if ($request->filled('proyek_id')) {
-        $query->where('proyek_id', $request->proyek_id);
+        if ($request->filled('no_pbg')) {
+        $query->where('no_pbg', $request->no_pbg);
         }
         if($request->filled('blok_rumah')){
             $blok = preg_replace('/[0-9]/',' ',$request->input('blok_rumah'));
@@ -49,9 +50,9 @@ class RumahController extends Controller
             'no_shm_rumah'     => 'required|max:16|unique:rumah',
             'blok_rumah'       => 'required|max:5',
             'harga_dp'         => 'required',
-            'kelebihan_tanah'  => 'required',
-            'status_rumah'     => 'required|in:Tersedia,Booking,Terjual',
-            'proyek_id'        => 'required|exists:proyek,id',
+            'luas_tanah_rumah'  => 'required',
+            'status_penjualan'     => 'required|in:Tersedia,Booking,Terjual',
+            'no_pbg'        => 'required|exists:proyek,no_pbg',
         ]);
 
         Rumah::create($input);
@@ -80,8 +81,17 @@ class RumahController extends Controller
      */
     public function update(Request $request, Rumah $rumah)
     {
-        $rumah->update($request->all());
-        return redirect()->route('rumah.index')->with('success', 'Data rumah berhasil dirubah');
+        $input = $request->validate([
+            'no_shm_rumah'     => ['required','max:16',Rule::unique('rumah','no_shm_rumah')->ignore($rumah->no_shm_rumah, 'no_shm_rumah')],
+            'blok_rumah'       => 'required|max:5',
+            'harga_dp'         => 'required',
+            'luas_tanah_rumah'  => 'required',
+            'status_penjualan'  => 'required|in:Tersedia,Booking,Terjual',
+            'no_pbg' => 'required|exists:proyek,no_pbg',
+        ]);
+
+        $rumah->update($input);
+        return redirect()->route('rumah.index')->with('success', 'A new Rumah has been Updated');
     }
 
     /**
@@ -89,7 +99,7 @@ class RumahController extends Controller
      */
     public function destroy(Rumah $rumah)
     {
-        $rumah-> destroy($rumah->id);
+        $rumah-> delete();
         return redirect()->route('rumah.index')->with('success','Data Rumah Berhasil Dihapus');
     }
 }
