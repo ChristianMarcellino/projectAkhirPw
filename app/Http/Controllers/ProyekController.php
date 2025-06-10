@@ -67,8 +67,8 @@ class ProyekController extends Controller
     public function update(Request $request, Proyek $proyek)
     {
         $input = $request->validate([
-            'no_pbg' => ['required',Rule::unique('proyek','no_pbg')->ignore($proyek->no_pbg, 'no_pbg'),'max:19'],
-            'nama_proyek' => ['required',Rule::unique('proyek','nama_proyek')->ignore($proyek->no_pbg, 'no_pbg')],
+            'no_pbg' => ['required',Rule::unique('proyek','no_pbg')->ignore($proyek->id),'max:19'],
+            'nama_proyek' => ['required',Rule::unique('proyek','nama_proyek')->ignore($proyek->id)],
             'jumlah_unit' => 'required',
             'harga_rumah' => 'required',
             'luas_tanah' => 'required',

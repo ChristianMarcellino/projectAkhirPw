@@ -52,7 +52,7 @@ class RumahController extends Controller
             'harga_dp'         => 'required',
             'luas_tanah_rumah'  => 'required',
             'status_penjualan'     => 'required|in:Tersedia,Booking,Terjual',
-            'no_pbg'        => 'required|exists:proyek,no_pbg',
+            'proyek_id'        => 'required|exists:proyek,id',
         ]);
 
         Rumah::create($input);
@@ -82,12 +82,12 @@ class RumahController extends Controller
     public function update(Request $request, Rumah $rumah)
     {
         $input = $request->validate([
-            'no_shm_rumah'     => ['required','max:16',Rule::unique('rumah','no_shm_rumah')->ignore($rumah->no_shm_rumah, 'no_shm_rumah')],
+            'no_shm_rumah'     => ['required','max:16',Rule::unique('rumah','no_shm_rumah')->ignore($rumah->id, '')],
             'blok_rumah'       => 'required|max:5',
             'harga_dp'         => 'required',
             'luas_tanah_rumah'  => 'required',
             'status_penjualan'  => 'required|in:Tersedia,Booking,Terjual',
-            'no_pbg' => 'required|exists:proyek,no_pbg',
+            'proyek_id' => 'required|exists:proyek,no_pbg',
         ]);
 
         $rumah->update($input);

@@ -62,16 +62,16 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="no_pbg">Nama Proyek</label>
-                        <select name="no_pbg" class="form-control @error('no_pbg') is-invalid @enderror">
+                        <label for="proyek_id">Nama Proyek</label>
+                        <select name="proyek_id" class="form-control @error('proyek_id') is-invalid @enderror">
                             <option value="">-- Pilih Proyek --</option>
                             @foreach($proyek as $item)
-                                <option value="{{ $item->no_pbg }}" {{ old('no_pbg') ==  $item->no_pbg ? 'selected' : ($rumah->no_pbg == $item->no_pbg ? 'selected' : null) }}>
+                                <option value="{{ $item->id }}" {{ old('proyek_id') ==  $item->id ? 'selected' : ($rumah->proyek_id == $item->id ? 'selected' : null) }}>
                                     {{ $item->nama_proyek }}
                                 </option>
                             @endforeach
                         </select>
-                        @error('no_pbg')
+                        @error('proyek_id')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
