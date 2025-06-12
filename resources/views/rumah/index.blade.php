@@ -56,7 +56,9 @@
                     <th>Luas Tanah Rumah</th>
                     <th>Status Penjualan</th>
                     <th>Harga Rumah</th>
+                    @if(Auth::user()->role =='admin')
                     <th>Aksi</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -70,18 +72,19 @@
                         <td>{{ $item->luas_tanah_rumah }}</td>
                         <td>{{ $item->status_penjualan }}</td>
                         <td>Rp{{ number_format($item->harga_dp + $item->proyek->harga_rumah + ($item->luas_tanah_rumah- $item->proyek->luas_tanah)*1350000, 0, ',', '.') }}</td>
-                        <td>
-                            <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm"
-                                title="Edit"
-                                onclick="window.location='{{ route('rumah.edit', $item->id) }}'" />
+                        @if (Auth::user()->role == 'admin')
+                            <td>
+                                <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm"
+                                    title="Edit"
+                                    onclick="window.location='{{ route('rumah.edit', $item->id) }}'" />
 
-                            <form action="{{ route('rumah.destroy', $item->id) }}" method="POST"
-                                style="display:inline-block">
-                                @csrf
-                                @method('DELETE')
-                                <x-adminlte-button theme="danger" icon="fas fa-trash" size="sm" title="Hapus" type="submit" />
-                            </form>
-                        </td>
+                                <form action="{{ route('rumah.destroy', $item->id) }}" method="POST" style="display:inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <x-adminlte-button theme="danger" icon="fas fa-trash" size="sm" title="Hapus" type="submit" />
+                                </form>
+                            </td>
+                        @endif
                     </tr>
                 @empty
                     <tr>

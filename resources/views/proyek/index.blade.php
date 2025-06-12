@@ -22,7 +22,9 @@
                     <th>Luas Tanah</th>
                     <th>Harga Kelebihan Tanah</th>
                     <th>Alamat</th>
+                    @if (Auth::user()->role == 'admin')
                     <th>Aksi</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -36,6 +38,7 @@
                         <td>{{ $item->luas_tanah }} m²</td>
                         <td>Rp{{ number_format($item->harga_kelebihan_tanah, 0, ',', '.') }}</td>
                         <td>{{ $item->alamat }}</tdf>
+                        @if (Auth::user()->role == 'admin')
                         <td>
                             <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm"
                                 title="Edit"
@@ -48,6 +51,7 @@
                                 <x-adminlte-button theme="danger" icon="fas fa-trash" size="sm" title="Hapus" type="submit" />
                             </form>
                         </td>
+                        @endif
                     </tr>
                 @empty
                     <tr>
