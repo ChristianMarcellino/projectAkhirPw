@@ -337,6 +337,16 @@ return [
             'url' => 'marketing',
             'icon' => 'far fa-fw fa-file',
         ],
+         [
+            'text' => 'Notaris',
+            'url' => 'notaris',
+            'icon' => 'far fa-fw fa-file',
+        ],
+        [
+            'text' => 'Bank',
+            'url' => 'bank',
+            'icon' => 'far fa-fw fa-file',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
