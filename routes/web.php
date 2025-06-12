@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/proyek', ProyekController::class);
     Route::resource('/rumah', RumahController::class);
     Route::resource('/marketing', MarketingController::class);
-    });
+});
 
 
 
