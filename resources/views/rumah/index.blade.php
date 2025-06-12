@@ -56,9 +56,9 @@
                     <th>Luas Tanah Rumah</th>
                     <th>Status Penjualan</th>
                     <th>Harga Rumah</th>
-                    @if(Auth::user()->role =='admin')
+                    @can('is-admin')
                     <th>Aksi</th>
-                    @endif
+                    @endcan
                 </tr>
             </thead>
             <tbody>
@@ -72,7 +72,7 @@
                         <td>{{ $item->luas_tanah_rumah }}</td>
                         <td>{{ $item->status_penjualan }}</td>
                         <td>Rp{{ number_format($item->harga_dp + $item->proyek->harga_rumah + ($item->luas_tanah_rumah- $item->proyek->luas_tanah)*1350000, 0, ',', '.') }}</td>
-                        @if (Auth::user()->role == 'admin')
+                        @can('is-admin')
                             <td>
                                 <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm"
                                     title="Edit"
@@ -84,7 +84,7 @@
                                     <x-adminlte-button theme="danger" icon="fas fa-trash" size="sm" title="Hapus" type="submit" />
                                 </form>
                             </td>
-                        @endif
+                        @endcan
                     </tr>
                 @empty
                     <tr>

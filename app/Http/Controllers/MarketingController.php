@@ -54,6 +54,7 @@ class MarketingController extends Controller
      */
     public function edit(Marketing $marketing)
     {
+        Gate::authorize('is-admin');
         return view('marketing.edit', compact('marketing'));
     }
 
@@ -62,6 +63,7 @@ class MarketingController extends Controller
      */
     public function update(Request $request, Marketing $marketing)
     {
+        Gate::authorize('is-admin');
         $input = $request->validate([
             'nik_marketing' => ['max:16','required',Rule::unique('marketing', 'nik_marketing')->ignore($marketing->id)],
             'nama_marketing' => 'max:50|required',
@@ -78,6 +80,7 @@ class MarketingController extends Controller
      */
     public function destroy(Marketing $marketing)
     {
+        Gate::authorize('is-admin');
         $marketing->delete();
         return redirect()->route('marketing.index')->with('success', 'Data Marketing Berhasil Dihapus');
     }

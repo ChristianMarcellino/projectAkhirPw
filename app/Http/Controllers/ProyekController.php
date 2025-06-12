@@ -58,6 +58,7 @@ class ProyekController extends Controller
      */
     public function edit(Proyek $proyek)
     {
+        Gate::authorize('is-admin');
         return view('proyek.edit',compact('proyek'));
     }
 
@@ -66,6 +67,7 @@ class ProyekController extends Controller
      */
     public function update(Request $request, Proyek $proyek)
     {
+        Gate::authorize('is-admin');
         $input = $request->validate([
             'no_pbg' => ['required',Rule::unique('proyek','no_pbg')->ignore($proyek->id),'max:19'],
             'nama_proyek' => ['required',Rule::unique('proyek','nama_proyek')->ignore($proyek->id)],
@@ -85,6 +87,7 @@ class ProyekController extends Controller
      */
     public function destroy(Proyek $proyek)
     {
+        Gate::authorize('is-admin');
         $proyek->delete();
         return redirect()->route('proyek.index')->with('success', 'Data Proyek Berhasil Dihapus');
     }
