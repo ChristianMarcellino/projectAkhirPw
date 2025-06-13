@@ -6,6 +6,7 @@ use App\Models\BiChecking;
 use App\Models\Konsumen;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class BiCheckingController extends Controller
 {
@@ -33,9 +34,9 @@ class BiCheckingController extends Controller
     public function store(Request $request)
     {
         $input = $request->validate([
-            'id_checking' => 'required|unique:bi_checking',
+            'id_checking' => 'required|max:16|unique:bi_checking',
             'konsumen_id' => 'required|exists:konsumen,id',
-            'hasil_checking' => 'required|in:Kol 1, Kol 2, Kol 3, Kol 4, Kol 5',
+            'hasil_checking' => 'required|in:kol 1,kol 2,kol 3,kol 4,kol 5',
             'tanggal_checking' => 'required|date',
         ]);
 
@@ -66,9 +67,9 @@ class BiCheckingController extends Controller
     public function update(Request $request, BiChecking $biChecking)
     {
         $input = $request->validate([
-            'id_checking' => 'required|unique:bi_checking,id,' . $biChecking->id,
+            'id_checking' => 'required|max:16|unique:bi_checking,id_checking,' . $biChecking->id,
             'konsumen_id' => 'required|exists:konsumen,id',
-            'hasil_checking' => 'required|in:Kol 1, Kol 2, Kol 3, Kol 4, Kol 5',
+            'hasil_checking' => 'required|in:kol 1,kol 2,kol 3,kol 4,kol 5',
             'tanggal_checking' => 'required|date',
         ]);
 

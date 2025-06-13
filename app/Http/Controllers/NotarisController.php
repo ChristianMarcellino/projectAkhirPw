@@ -55,6 +55,7 @@ class NotarisController extends Controller
      */
     public function edit(Notaris $notaris)
     {
+        dd($notaris);
         return view('notaris.edit', compact('notaris'));
     }
 
@@ -64,11 +65,12 @@ class NotarisController extends Controller
     public function update(Request $request, Notaris $notaris)
     {
         $input = $request->validate([
-            'nik_notaris' => ['max:16', 'required', Rule::unique('notaris')->ignore($notaris->id)],
+            'nik_notaris' => ['max:16', 'required', Rule::unique('notaris', 'nik_notaris')->ignore($notaris->id)],
             'nama_notaris' => 'max:50|required',
             'alamat_notaris' => 'max:100|required',
             'no_telp_notaris' => ['required', 'max:13', 'regex:/^(08|07)[0-9]{8,11}$/']
         ]);
+
 
         $notaris->update($input);
         return redirect()->route('notaris.index')->with('success', 'Data Notaris Berhasil Diupdate');

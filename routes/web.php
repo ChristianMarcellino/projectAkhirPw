@@ -32,5 +32,4 @@ Route::resource('/bank', BankController::class);
 Route::resource('/konsumen', KonsumenController::class);
 Route::resource('/bi_checking', BiCheckingController::class);
 
-
 require __DIR__.'/auth.php';

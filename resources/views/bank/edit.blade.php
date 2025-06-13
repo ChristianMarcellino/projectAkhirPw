@@ -53,6 +53,7 @@
                         @enderror
                     </div>
                 </div>
+            </div>
 
             <div class="text-right">
                 <a href="{{ route('bank.index') }}" class="btn btn-secondary">Kembali</a>

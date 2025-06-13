@@ -6,6 +6,7 @@ use App\Models\Bank;
 use App\Models\Notaris;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class BankController extends Controller
 {
@@ -33,7 +34,7 @@ class BankController extends Controller
     public function store(Request $request)
     {
         $input = $request->validate([
-            'nama_bank' => 'required|max:50|unique:bank',
+            'nama_bank' => 'required|max:60|unique:bank',
             'alamat_bank' => 'required|max:100',
             'no_telp_bank' => ['required', 'max:13', 'regex:/^(08|07)[0-9]{8,11}$/'],
             'notaris_id' => 'required|exists:notaris,id'
@@ -56,7 +57,7 @@ class BankController extends Controller
      */
     public function edit(Bank $bank)
     {
-        $notaris = \App\Models\Notaris::all();
+        $notaris = Notaris::all();
         return view('bank.edit', compact('bank', 'notaris'));
     }
 
@@ -66,10 +67,10 @@ class BankController extends Controller
     public function update(Request $request, Bank $bank)
     {
         $input = $request->validate([
-            'nama_bank' => 'required|max:50|unique:bank,nama_bank,' . $bank->id,
+            'nama_bank' => ['required', 'max:60', Rule::unique('bank', 'nama_bank')->ignore($bank->id)],
             'alamat_bank' => 'required|max:100',
             'no_telp_bank' => ['required', 'max:13', 'regex:/^(08|07)[0-9]{8,11}$/'],
-            'nik_notaris' => 'required|exists:notaris,id'
+            'notaris_id' => 'required|exists:notaris,id'
         ]);
 
         $bank->update($input);

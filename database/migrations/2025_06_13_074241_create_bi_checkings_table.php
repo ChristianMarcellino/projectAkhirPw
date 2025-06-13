@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('id_checking', 16)->unique();
             $table->string('konsumen_id');
             $table->foreign('konsumen_id')->references('id')->on('konsumen')->onDelete('restrict')->onUpdate('cascade');
-            $table->enum('hasil_checking', ['Kol 1','Kol 2','Kol 3','Kol 4','Kol 5']);
+            $table->enum('hasil_checking', ['kol 1','kol 2','kol 3','kol 4','kol 5']);
             $table->date('tanggal_checking');
             $table->timestamps();
         });

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Update marketing')
+@section('title', 'Update Bi Checking')
 
 @section('content_header')
     <h1>@yield('title')</h1>
@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('marketing.update', $marketing->id) }}" method="POST">
+        <form action="{{ route('bi_checking.update', $biChecking->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="row">
@@ -41,11 +41,11 @@
                         <label for="hasil_checking">Hasil Checking</label>
                         <select name="hasil_checking" class="form-control @error('hasil_checking') is-invalid @enderror">
                             <option value="">-- Pilih Hasil --</option>
-                            <option value="kol 1" {{ old('hasil_checking',$biChecking->hasil_checking) == 'kol 1' ? 'selected' : '' }}>Kol 1</option>
-                            <option value="kol 2" {{ old('hasil_checking',$biChecking->hasil_checking) == 'kol 2' ? 'selected' : '' }}>Kol 2</option>
-                            <option value="kol 3" {{ old('hasil_checking',$biChecking->hasil_checking) == 'kol 3' ? 'selected' : '' }}>Kol 3</option>
-                            <option value="kol 4" {{ old('hasil_checking',$biChecking->hasil_checking) == 'kol 4' ? 'selected' : '' }}>Kol 4</option>
-                            <option value="kol 5" {{ old('hasil_checking',$biChecking->hasil_checking) == 'kol 5' ? 'selected' : '' }}>Kol 5</option>
+                            <option value="kol 1" {{ old('hasil_checking',$biChecking->hasil_checking) == 'kol 1' ? 'selected' : '' }}>kol 1</option>
+                            <option value="kol 2" {{ old('hasil_checking',$biChecking->hasil_checking) == 'kol 2' ? 'selected' : '' }}>kol 2</option>
+                            <option value="kol 3" {{ old('hasil_checking',$biChecking->hasil_checking) == 'kol 3' ? 'selected' : '' }}>kol 3</option>
+                            <option value="kol 4" {{ old('hasil_checking',$biChecking->hasil_checking) == 'kol 4' ? 'selected' : '' }}>kol 4</option>
+                            <option value="kol 5" {{ old('hasil_checking',$biChecking->hasil_checking) == 'kol 5' ? 'selected' : '' }}>kol 5</option>
                         </select>
                         @error('hasil_checking')
                             <span class="invalid-feedback">{{ $message }}</span>
@@ -59,12 +59,11 @@
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
-
                 </div>
             </div>
 
             <div class="text-right">
-                <a href="{{ route('marketing.index') }}" class="btn btn-secondary">Kembali</a>
+                <a href="{{ route('bi_checking.index') }}" class="btn btn-secondary">Kembali</a>
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </form>

@@ -41,11 +41,11 @@
                         <label for="hasil_checking">Hasil Checking</label>
                         <select name="hasil_checking" class="form-control @error('hasil_checking') is-invalid @enderror">
                             <option value="">-- Pilih Hasil --</option>
-                            <option value="Kol 1" {{ old('hasil_checking') == 'Kol 1' ? 'selected' : '' }}>Kol 1</option>
-                            <option value="Kol 2" {{ old('hasil_checking') == 'Kol 2' ? 'selected' : '' }}>Kol 2</option>
-                            <option value="Kol 3" {{ old('hasil_checking') == 'Kol 3' ? 'selected' : '' }}>Kol 3</option>
-                            <option value="Kol 4" {{ old('hasil_checking') == 'Kol 4' ? 'selected' : '' }}>Kol 4</option>
-                            <option value="Kol 5" {{ old('hasil_checking') == 'Kol 5' ? 'selected' : '' }}>Kol 5</option>
+                            <option value="kol 1" {{ old('hasil_checking') == 'kol 1' ? 'selected' : '' }}>kol 1</option>
+                            <option value="kol 2" {{ old('hasil_checking') == 'kol 2' ? 'selected' : '' }}>kol 2</option>
+                            <option value="kol 3" {{ old('hasil_checking') == 'kol 3' ? 'selected' : '' }}>kol 3</option>
+                            <option value="kol 4" {{ old('hasil_checking') == 'kol 4' ? 'selected' : '' }}>kol 4</option>
+                            <option value="kol 5" {{ old('hasil_checking') == 'kol 5' ? 'selected' : '' }}>kol 5</option>
                         </select>
                         @error('hasil_checking')
                             <span class="invalid-feedback">{{ $message }}</span>
