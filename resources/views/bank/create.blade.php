@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('rumah.store') }}" method="POST">
+        <form action="{{ route('bank.store') }}" method="POST">
             @csrf
 
             <div class="row">
@@ -56,7 +56,7 @@
             </div>
 
             <div class="text-right">
-                <a href="{{ route('rumah.index') }}" class="btn btn-secondary">Kembali</a>
+                <a href="{{ route('bank.index') }}" class="btn btn-secondary">Kembali</a>
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </form>

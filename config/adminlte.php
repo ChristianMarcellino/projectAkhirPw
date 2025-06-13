@@ -347,6 +347,11 @@ return [
             'url' => 'bank',
             'icon' => 'far fa-fw fa-file',
         ],
+        [
+            'text' => 'Konsumen',
+            'url' => 'konsumen',
+            'icon' => 'far fa-fw fa-file',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

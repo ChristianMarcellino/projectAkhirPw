@@ -13,25 +13,25 @@ class Konsumen extends Model
     protected $fillable = [
         'nik_konsumen',
         'nama_konsumen',
-        'no_telp',
-        'alamat',
+        'no_telp_konsumen',
+        'alamat_konsumen',
         'gaji',
         'status_pernikahan',
-        'no_shm_rumah',
-        'nama_bank',
-        'nik_marketing',
-    
+        'rumah_id',
+        'bank_id',
+        'marketing_id',
+
     ];
     public function rumah()
     {
-        return $this->belongsTo(Rumah::class, 'no_shm_rumah', 'no_shm_rumah');
+        return $this->belongsTo(Rumah::class, 'rumah_id', 'id');
     }
     public function marketing()
     {
-        return $this->belongsTo(Marketing::class, 'nik_marketing', 'nik_marketing');
+        return $this->belongsTo(Marketing::class, 'marketing_id', 'id');
     }
     public function bank()
     {
-        return $this->belongsTo(Bank::class, 'nama_bank', 'nama_bank');
+        return $this->belongsTo(Bank::class, 'bank_id', 'id');
     }
 }

@@ -9,10 +9,10 @@ class Bank extends Model
 {
     protected $table = "bank";
     use HasUuids;
-    protected $fillable = ['nama_bank', 'alamat_bank', 'no_telp_bank', 'nik_notaris'];
+    protected $fillable = ['nama_bank', 'alamat_bank', 'no_telp_bank', 'notaris_id'];
 
     public function notaris()
     {
-        return $this->belongsTo(Notaris::class, 'nik_notaris', 'id');
+        return $this->belongsTo(Notaris::class, 'notaris_id', 'id');
     }
 }

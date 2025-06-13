@@ -23,7 +23,7 @@ class BankController extends Controller
      */
     public function create()
     {
-        $notaris = \App\Models\Notaris::all();
+        $notaris = Notaris::all();
         return view('bank.create', compact('notaris'));
     }
 
@@ -36,7 +36,7 @@ class BankController extends Controller
             'nama_bank' => 'required|max:50|unique:bank',
             'alamat_bank' => 'required|max:100',
             'no_telp_bank' => ['required', 'max:13', 'regex:/^(08|07)[0-9]{8,11}$/'],
-            'nik_notaris' => 'required|exists:notaris,nik_notaris'
+            'notaris_id' => 'required|exists:notaris,id'
         ]);
 
         Bank::create($input);
@@ -69,7 +69,7 @@ class BankController extends Controller
             'nama_bank' => 'required|max:50|unique:bank,nama_bank,' . $bank->id,
             'alamat_bank' => 'required|max:100',
             'no_telp_bank' => ['required', 'max:13', 'regex:/^(08|07)[0-9]{8,11}$/'],
-            'nik_notaris' => 'required|exists:notaris,nik_notaris'
+            'nik_notaris' => 'required|exists:notaris,id'
         ]);
 
         $bank->update($input);

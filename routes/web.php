@@ -6,6 +6,7 @@ use App\Http\Controllers\RumahController;
 use App\Http\Controllers\MarketingController;
 use App\Http\Controllers\NotarisController;
 use App\Http\Controllers\BankController;
+use App\Http\Controllers\KonsumenController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,5 +28,6 @@ Route::resource('/rumah', RumahController::class);
 Route::resource('/marketing', MarketingController::class);
 Route::resource('/notaris', NotarisController::class);
 Route::resource('/bank', BankController::class);
+Route::resource('/konsumen', KonsumenController::class);
 
 require __DIR__.'/auth.php';

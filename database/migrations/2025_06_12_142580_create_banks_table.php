@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('nama_bank', 60)->unique();
             $table->string('alamat_bank', 100);
             $table->string('no_telp_bank', 13);
-            $table->string('nik_notaris');
-            $table->foreign('nik_notaris')->references('nik_notaris')->on('notaris')->onDelete('restrict')->onUpdate('cascade');
+            $table->string('notaris_id');
+            $table->foreign('notaris_id')->references('id')->on('notaris')->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();
         });
     }
