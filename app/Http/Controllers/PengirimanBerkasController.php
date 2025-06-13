@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\PengirimanBerkas;
-
+use App\Models\Konsumen;
+use App\Models\Bank;
+use App\Models\Marketing;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -16,7 +18,10 @@ class PengirimanBerkasController extends Controller
     {
         //
         $pengirimanBerkas = PengirimanBerkas::all();
-        return view('pengirimanberkas.index', compact('pengirimanBerkas'));
+        $konsumen = Konsumen::all();
+        $bank = Bank::all();
+        $marketing = Marketing::all();
+        return view('pengirimanberkas.index', compact('pengirimanBerkas', 'konsumen', 'bank', 'marketing'));
     }
 
     /**
@@ -25,7 +30,11 @@ class PengirimanBerkasController extends Controller
     public function create()
     {
         //
-        return view('pengirimanberkas.create');
+        $pengirimanBerkas = PengirimanBerkas::all();
+        $konsumen = Konsumen::all();
+        $bank = Bank::all();
+        $marketing = Marketing::all();
+        return view('pengirimanberkas.create', compact('konsumen', 'bank', 'marketing'));
     }
 
     /**

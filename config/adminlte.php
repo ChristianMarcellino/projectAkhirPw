@@ -357,6 +357,11 @@ return [
             'url' => 'bi_checking',
             'icon' => 'far fa-fw fa-file',
         ],
+        [
+            'text' => 'Pengiriman Berkas',
+            'url' => 'pengirimanberkas',
+            'icon' => 'far fa-fw fa-file',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
