@@ -352,6 +352,11 @@ return [
             'url' => 'konsumen',
             'icon' => 'far fa-fw fa-file',
         ],
+        [
+            'text' => 'Bi Checking',
+            'url' => 'bi_checking',
+            'icon' => 'far fa-fw fa-file',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
