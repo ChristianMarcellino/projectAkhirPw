@@ -33,6 +33,7 @@ class BiCheckingController extends Controller
     public function store(Request $request)
     {
         $input = $request->validate([
+            'id_checking' => 'required|unique:bi_checking',
             'konsumen_id' => 'required|exists:konsumen,id',
             'hasil_checking' => 'required|in:Kol 1, Kol 2, Kol 3, Kol 4, Kol 5',
             'tanggal_checking' => 'required|date',
@@ -65,13 +66,14 @@ class BiCheckingController extends Controller
     public function update(Request $request, BiChecking $biChecking)
     {
         $input = $request->validate([
+            'id_checking' => 'required|unique:bi_checking,id,' . $biChecking->id,
             'konsumen_id' => 'required|exists:konsumen,id',
             'hasil_checking' => 'required|in:Kol 1, Kol 2, Kol 3, Kol 4, Kol 5',
             'tanggal_checking' => 'required|date',
         ]);
 
         $biChecking->update($input);
-        return redirect()->route('bi_checking.index')->with('success', 'Data BI Checking Berhasil Diupdate');
+        return redirect()->route('bi_checking.index')->with('success', 'Data Bi Checking Berhasil Diupdate');
     }
 
     /**
@@ -80,6 +82,6 @@ class BiCheckingController extends Controller
     public function destroy(BiChecking $biChecking)
     {
         $biChecking->delete();
-        return redirect()->route('bi_checking.index')->with('success', 'Data BI Checking Berhasil Dihapus');
+        return redirect()->route('bi_checking.index')->with('success', 'Data Bi Checking Berhasil Dihapus');
     }
 }
