@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('no_pbg', 19)->unique();
             $table->string('nama_proyek', 70)->unique();
             $table->integer('jumlah_unit');
-            $table->integer('harga_rumah');
+            $table->unsignedInteger('harga_rumah');
             $table->integer('luas_tanah');
-            $table->integer('harga_kelebihan_tanah');
+            $table->unsignedInteger('harga_kelebihan_tanah');
             $table->string('alamat', 100);
             $table->timestamps();
         });

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('no_shm_rumah', 16)->unique();
             $table->string('blok_rumah', 5);
             $table->integer('luas_tanah_rumah');
-            $table->integer('harga_dp');
+            $table->unsignedinteger('harga_dp');
             $table->string('proyek_id');
             $table->foreign('proyek_id')->references('id')->on('proyek')->onDelete('restrict')->onUpdate('cascade');
             $table->enum('status_penjualan', ['Tersedia','Terjual','Booking']);
