@@ -8,6 +8,7 @@ use App\Http\Controllers\NotarisController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\KonsumenController;
 use App\Http\Controllers\BiCheckingController;
+use App\Http\Controllers\PengirimanBerkasController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -35,5 +36,8 @@ Route::resource('/konsumen', KonsumenController::class)->parameters([
     'konsumen' => 'konsumen'
 ]);
 Route::resource('/bi_checking', BiCheckingController::class);
+Route::resource('pengirimanberkas', PengirimanBerkasController::class)->parameters([
+    'pengirimanberkas' => 'pengirimanberkas'
+]);
 
 require __DIR__.'/auth.php';
