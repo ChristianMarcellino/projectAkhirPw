@@ -55,7 +55,6 @@ class NotarisController extends Controller
      */
     public function edit(Notaris $notaris)
     {
-        dd($notaris);
         return view('notaris.edit', compact('notaris'));
     }
 

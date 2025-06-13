@@ -27,9 +27,13 @@ Route::middleware('auth')->group(function () {
 Route::resource('/proyek', ProyekController::class);
 Route::resource('/rumah', RumahController::class);
 Route::resource('/marketing', MarketingController::class);
-Route::resource('/notaris', NotarisController::class);
+Route::resource('notaris', NotarisController::class)->parameters([
+    'notaris' => 'notaris'
+]);
 Route::resource('/bank', BankController::class);
-Route::resource('/konsumen', KonsumenController::class);
+Route::resource('/konsumen', KonsumenController::class)->parameters([
+    'konsumen' => 'konsumen'
+]);
 Route::resource('/bi_checking', BiCheckingController::class);
 
 require __DIR__.'/auth.php';

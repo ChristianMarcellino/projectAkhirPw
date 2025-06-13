@@ -7,7 +7,7 @@ use App\Models\Rumah;
 use App\Models\Bank;
 use App\Models\Marketing;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class KonsumenController extends Controller
 {
@@ -38,7 +38,7 @@ class KonsumenController extends Controller
             'no_telp_konsumen' => ['required', 'max:13', 'regex:/^(08|07)[0-9]{8,11}$/'],
             'alamat_konsumen' => 'max:100|required',
             'gaji' => 'required|integer|min:0',
-            'status_pernikahan' => 'required|in:Menikah, Cerai Hidup, Cerai Mati, Belum Menikah',
+            'status_pernikahan' => 'required|in:Menikah,Cerai Hidup,Cerai Mati,Belum Menikah',
             'rumah_id' => 'required|exists:rumah,id',
             'bank_id' => 'required|max:60|exists:bank,id',
             'marketing_id' => 'required|exists:marketing,id'
@@ -79,7 +79,7 @@ class KonsumenController extends Controller
             'no_telp_konsumen' => ['required', 'max:13', 'regex:/^(08|07)[0-9]{8,11}$/'],
             'alamat_konsumen' => 'max:100|required',
             'gaji' => 'required|integer|min:0',
-            'status_pernikahan' => 'required|in:Menikah, Cerai Hidup, Cerai Mati, Belum Menikah',
+            'status_pernikahan' => 'required|in:Menikah,Cerai Hidup,Cerai Mati,Belum Menikah',
             'rumah_id' => 'required|exists:rumah,id',
             'bank_id' => 'required|max:60|exists:bank,id',
             'marketing_id' => 'required|exists:marketing,id'
