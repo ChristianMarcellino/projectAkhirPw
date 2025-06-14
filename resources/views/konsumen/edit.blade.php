@@ -37,9 +37,6 @@
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
-                </div>
-
-                <div class="col-md-6">
                     <div class="form-group">
                         <label for="alamat_konsumen">Alamat konsumen</label>
                         <input type="text" name="alamat_konsumen" maxlength="100" class="form-control @error('alamat_konsumen') is-invalid @enderror" value="{{ old('alamat_konsumen') ? old('alamat_konsumen') : $konsumen->alamat_konsumen }}" maxlength="100">
@@ -55,9 +52,10 @@
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
-
+                </div>
+                <div class="col-md-6">
                     <div class="form-group">
-                        <label for="status_pernikahan">Status Rumah</label>
+                        <label for="status_pernikahan">Status Pernikahan</label>
                         <select name="status_pernikahan" class="form-control @error('status_pernikahan') is-invalid @enderror">
                             <option value="">-- Pilih Status --</option>
                             <option value="Menikah" {{ old('status_pernikahan',$konsumen->status_pernikahan) == 'Menikah' ? 'selected' : '' }}>Menikah</option>
@@ -69,15 +67,13 @@
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
-                </div>
-                <div class="col-md-6">
                     <div class="form-group">
                         <label for="rumah_id">No SHM</label>
                         <select name="rumah_id" class="form-control @error('rumah_id') is-invalid @enderror">
                             <option value="">-- Pilih No SHM --</option>
                             @foreach($rumah as $item)
                                 <option value="{{ $item->id }}" {{ old('rumah_id') == $item->id ? 'selected' : ($konsumen->rumah_id == $item->id ? 'selected' : null) }}>
-                                    {{ $item->no_shm_rumah }}
+                                    {{$item->proyek->nama_proyek}} {{ $item->blok_rumah }}
                                 </option>
                             @endforeach
                         </select>

@@ -20,7 +20,7 @@
                         <select name="konsumen_id" class="form-control @error('konsumen_id') is-invalid @enderror">
                             <option value="">-- Pilih Konsumen --</option>
                             @foreach($konsumen as $item)
-                                <option value="{{ $item->id }}" {{ old('konsumen_id') == $item->id ? 'selected' : ($berkas_konsumen->konsumen_id == $item->id ? 'selected' : null) }}>
+                                <option value="{{ $item->id }}" {{ old('konsumen_id') == $item->id ? 'selected' : ($berkasKonsumen->konsumen_id == $item->id ? 'selected' : null) }}>
                                     {{ $item->nama_konsumen }}
                                 </option>
                             @endforeach
@@ -41,7 +41,8 @@
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
-
+                </div>
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="keterangan_berkas">Keterangan Berkas</label>
                         <input type="taxt" name="keterangan_berkas" class="form-control @error('keterangan_berkas') is-invalid @enderror" value="{{ old('keterangan_berkas') ? old('keterangan_berkas') : $berkasKonsumen->keterangan_berkas}}">
@@ -54,7 +55,7 @@
                         <label for="berkas_id">Jenis Berkas</label>
                         <select name="berkas_id" class="form-control @error('berkas_id') is-invalid @enderror">
                             <option value="">-- Pilih Jenis Berkas --</option>
-                            @foreach($berkas as $item)
+                            @foreach($jenisBerkas as $item)
                                 <option value="{{ $item->id }}" {{ old('berkas_id') == $item->id ? 'selected' : ($berkasKonsumen->berkas_id == $item->id ? 'selected' : null) }}>
                                     {{ $item->jenis_Berkas }}
                                 </option>

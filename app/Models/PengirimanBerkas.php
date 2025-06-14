@@ -32,4 +32,9 @@ class PengirimanBerkas extends Model
     {
         return $this->belongsTo(Marketing::class, 'nik_marketing', 'nik');
     }
+
+    public function notaris()
+    {
+        return $this->belongsTo(Notaris::class, 'nik_notaris', 'nik');
+    }
 }

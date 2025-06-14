@@ -37,7 +37,7 @@
                         <td>{{ $item->nama_konsumen }}</td>
                         <td>{{ $item->no_telp_konsumen }}</td>
                         <td>{{ $item->alamat_konsumen }}</tdf>
-                        <td>{{ $item->gaji }}</td>
+                        <td>Rp{{number_format( $item->gaji ,0 ,',','.')}}</td>
                         <td>{{ $item->status_pernikahan }}</td>
                         <td>{{ $item->rumah->no_shm_rumah }}</td>
                         <td>{{ $item->bank->nama_bank }}</td>

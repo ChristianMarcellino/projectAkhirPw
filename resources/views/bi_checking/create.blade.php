@@ -15,14 +15,6 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="id_checking">ID Checking</label>
-                        <input type="text" name="id_checking" maxlength="16" class="form-control @error('id_checking') is-invalid @enderror" value="{{ old('id_checking') }}" maxlength="19">
-                        @error('id_checking')
-                            <span class="invalid-feedback">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
                         <label for="konsumen_id">Nama Konsumen</label>
                         <select name="konsumen_id" class="form-control @error('konsumen_id') is-invalid @enderror">
                             <option value="">-- Pilih Konsumen --</option>
@@ -36,7 +28,6 @@
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
-
                     <div class="form-group">
                         <label for="hasil_checking">Hasil Checking</label>
                         <select name="hasil_checking" class="form-control @error('hasil_checking') is-invalid @enderror">
@@ -51,7 +42,8 @@
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
-
+                </div>
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="tanggal_checking">Tanggal Checking</label>
                         <input type="date" name="tanggal_checking" class="form-control @error('tanggal_checking') is-invalid @enderror" value="{{ old('tanggal_checking') }}">

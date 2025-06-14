@@ -34,13 +34,14 @@
                         <select name="ketersediaan_berkas" class="form-control @error('ketersediaan_berkas') is-invalid @enderror">
                             <option value="">-- Pilih Hasil --</option>
                             <option value="Tersedia" {{ old('ketersediaan_berkas') == 'Tersedia' ? 'selected' : '' }}>Tersedia</option>
-                            <option value="Belum Tersedia" {{ old('ketersediaan_berkas') == 'BelumT ersedia' ? 'selected' : '' }}>Belum Tersedia</option>
+                            <option value="Belum Tersedia" {{ old('ketersediaan_berkas') == 'Belum Tersedia' ? 'selected' : '' }}>Belum Tersedia</option>
                         </select>
                         @error('ketersediaan_berkas')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
-
+                </div>
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="keterangan_berkas">Keterangan Berkas</label>
                         <input type="text" name="keterangan_berkas" class="form-control @error('keterangan_berkas') is-invalid @enderror" value="{{ old('tanggal_checking') }}">
