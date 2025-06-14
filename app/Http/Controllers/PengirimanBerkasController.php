@@ -17,11 +17,11 @@ class PengirimanBerkasController extends Controller
     public function index()
     {
         //
-        $pengirimanBerkas = PengirimanBerkas::all();
+        $pengirimanberkas = PengirimanBerkas::all();
         $konsumen = Konsumen::all();
         $bank = Bank::all();
         $marketing = Marketing::all();
-        return view('pengirimanberkas.index', compact('pengirimanBerkas', 'konsumen', 'bank', 'marketing'));
+        return view('pengirimanberkas.index', compact('pengirimanberkas', 'konsumen', 'bank', 'marketing'));
     }
 
     /**
@@ -29,14 +29,12 @@ class PengirimanBerkasController extends Controller
      */
     public function create()
     {
-        //
-        $pengirimanBerkas = PengirimanBerkas::all();
-        $konsumen = Konsumen::all();
-        $bank = Bank::all();
-        $marketing = Marketing::all();
-        return view('pengirimanberkas.create', compact('konsumen', 'bank', 'marketing'));
-    }
+    $konsumen = Konsumen::all();
+    $bank = Bank::all();
+    $marketing = Marketing::all();
 
+    return view('pengirimanberkas.create', compact('konsumen', 'bank', 'marketing'));
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -44,9 +42,9 @@ class PengirimanBerkasController extends Controller
     {
         //
         $request->validate([
-            'nik_konsumen' => 'required|string|max:16',
-            'nama_bank' => 'required|string|max:60',
-            'nik_marketing' => 'required|string|max:16',
+            'id_konsumen' => 'required',
+            'id_bank' => 'required',
+            'id_marketing' => 'required',
             'tanggal_kirim' => 'required|date',
             'status' => 'required|in:diterima,diproses,ditolak',
         ]);
@@ -68,36 +66,39 @@ class PengirimanBerkasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PengirimanBerkas $pengirimanBerkas)
+    public function edit(PengirimanBerkas $pengirimanberkas)
     {
         //
-        return view('pengirimanberkas.edit', compact('pengirimanBerkas'));
+        $konsumen = Konsumen::all();
+        $bank = Bank::all();
+        $marketing = Marketing::all();
+        return view('pengirimanberkas.edit', compact('pengirimanberkas', 'konsumen', 'bank', 'marketing'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PengirimanBerkas $pengirimanBerkas)
+    public function update(Request $request, PengirimanBerkas $pengirimanberkas)
     {
         //
         $request->validate([
-            'nik_konsumen' => 'required|string|max:16',
-            'nama_bank' => 'required|string|max:60',
-            'nik_marketing' => 'required|string|max:16',
+            'id_konsumen' => 'required',
+            'id_bank' => 'required',
+            'id_marketing' => 'required',
             'tanggal_kirim' => 'required|date',
             'status' => 'required|in:diterima,diproses,ditolak',
         ]);
-        $pengirimanBerkas->update($request->all());
+        $pengirimanberkas->update($request->all());
         return redirect()->route('pengirimanberkas.index')->with('success', 'Data Pengiriman Berkas Berhasil Diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PengirimanBerkas $pengirimanBerkas)
+    public function destroy(PengirimanBerkas $pengirimanberkas)
     {
         //
-        $pengirimanBerkas->delete();
+        $pengirimanberkas->delete();
         return redirect()->route('pengirimanberkas.index')->with('success', 'Data Pengiriman Berkas Berhasil Dihapus');
     }
 }
