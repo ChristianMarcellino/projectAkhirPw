@@ -8,6 +8,7 @@ use App\Models\Bank;
 use App\Models\Marketing;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PengirimanBerkasController extends Controller
 {
@@ -68,7 +69,7 @@ class PengirimanBerkasController extends Controller
      */
     public function edit(PengirimanBerkas $pengirimanberkas)
     {
-        //
+        Gate::authorize('admin-only');
         $konsumen = Konsumen::all();
         $bank = Bank::all();
         $marketing = Marketing::all();
@@ -80,7 +81,7 @@ class PengirimanBerkasController extends Controller
      */
     public function update(Request $request, PengirimanBerkas $pengirimanberkas)
     {
-        //
+        Gate::authorize('admin-only');
         $request->validate([
             'id_konsumen' => 'required',
             'id_bank' => 'required',
@@ -97,7 +98,7 @@ class PengirimanBerkasController extends Controller
      */
     public function destroy(PengirimanBerkas $pengirimanberkas)
     {
-        //
+        Gate::authorize('admin-only');
         $pengirimanberkas->delete();
         return redirect()->route('pengirimanberkas.index')->with('success', 'Data Pengiriman Berkas Berhasil Dihapus');
     }

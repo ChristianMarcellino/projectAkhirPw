@@ -6,6 +6,7 @@ use App\Models\Rumah;
 use App\Models\Proyek;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Gate;
 
 class RumahController extends Controller
 {
@@ -77,6 +78,7 @@ class RumahController extends Controller
      */
     public function edit(Rumah $rumah)
     {
+        Gate::authorize('admin-only');
         $proyek = \App\Models\Proyek::all();
         return view('rumah.edit',compact('rumah','proyek'));
     }
@@ -86,6 +88,7 @@ class RumahController extends Controller
      */
     public function update(Request $request, Rumah $rumah)
     {
+        Gate::authorize('admin-only');
         $input = $request->validate([
             'no_shm_rumah'     =>['required','max:16',Rule::unique('rumah', 'no_shm_rumah')->ignore($rumah->id)],
             'blok_rumah'       =>['required','max:5',
@@ -106,6 +109,7 @@ class RumahController extends Controller
      */
     public function destroy(Rumah $rumah)
     {
+        Gate::authorize('admin-only');
         $rumah-> delete();
         return redirect()->route('rumah.index')->with('success','Data Rumah Berhasil Dihapus');
     }

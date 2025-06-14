@@ -19,9 +19,9 @@
                     <th>Nama Konsumen</th>
                     <th>Hasil Checking</th>
                     <th>Tanggal Checking</th>
-                    @if (Auth::user()->role == 'admin')
+                   @can ('admin-only')
                     <th>Aksi</th>
-                    @endif
+                    @endcan
                 </tr>
             </thead>
             <tbody>
@@ -32,7 +32,7 @@
                         <td>{{ $item->konsumen->nama_konsumen ?? '-'}}</td>
                         <td>{{ $item->hasil_checking }}</td>
                         <td>{{ $item->tanggal_checking }}</tdf>
-                        @if (Auth::user()->role == 'admin')
+                       @can ('admin-only')
                         <td>
                             <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm"
                                 title="Edit"
@@ -45,7 +45,7 @@
                                 <x-adminlte-button class="show_confirm" data-nama="Bi Checking {{$item->konsumen->nama_konsumen}}" theme="danger" icon="fas fa-trash" size="sm" title="Hapus" type="submit" />
                             </form>
                         </td>
-                        @endif
+                        @endcan
                     </tr>
                 @empty
                     <tr>

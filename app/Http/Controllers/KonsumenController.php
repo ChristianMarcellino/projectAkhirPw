@@ -8,6 +8,7 @@ use App\Models\Bank;
 use App\Models\Marketing;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Gate;
 
 class KonsumenController extends Controller
 {
@@ -61,6 +62,7 @@ class KonsumenController extends Controller
      */
     public function edit(Konsumen $konsumen)
     {
+        Gate::authorize('admin-only');
         $rumah = Rumah::all();
         $bank = Bank::all();
         $marketing = Marketing::all();
@@ -72,6 +74,7 @@ class KonsumenController extends Controller
      */
     public function update(Request $request, Konsumen $konsumen)
     {
+        Gate::authorize('admin-only');
         $input = $request->validate([
             'nik_konsumen' => ['max:16', 'required', Rule::unique('konsumen', 'nik_konsumen')->ignore($konsumen->id)],
             'nama_konsumen' => 'max:60|required',
@@ -92,6 +95,7 @@ class KonsumenController extends Controller
      */
     public function destroy(Konsumen $konsumen)
     {
+        Gate::authorize('admin-only');
         $konsumen->delete();
         return redirect()->route('konsumen.index')->with('success', 'Data Konsumen Berhasil Dihapus');
     }

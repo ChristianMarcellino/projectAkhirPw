@@ -6,6 +6,7 @@ use App\Models\Akad;
 use App\Models\Konsumen;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Gate;
 
 class AkadController extends Controller
 {
@@ -55,6 +56,7 @@ class AkadController extends Controller
      */
     public function edit(Akad $akad)
     {
+        Gate::authorize('admin-only');
         $konsumen=Konsumen::all();
         return view('akad.edit', compact('akad', 'konsumen'));
     }
@@ -64,6 +66,7 @@ class AkadController extends Controller
      */
     public function update(Request $request, Akad $akad)
     {
+        Gate::authorize('admin-only');
          $input = $request->validate([
             'konsumen_id' => ['required','exists:konsumen,id', Rule::unique('akad', 'konsumen_id')->ignore($akad->id)],
             'tanggal_akad' => 'required',
@@ -79,7 +82,8 @@ class AkadController extends Controller
      */
     public function destroy(Akad $akad)
     {
-         $akad->delete();
+        Gate::authorize('admin-only');
+        $akad->delete();
         return redirect()->route('akad.index')->with('success', 'Data Akad Berhasil Dihapus');
     }
 }

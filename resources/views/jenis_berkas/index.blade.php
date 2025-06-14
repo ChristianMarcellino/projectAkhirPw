@@ -16,9 +16,9 @@
                 <tr>
                     <th>No</th>
                     <th>Jenis Berkas</th>
-                    @if (Auth::user()->role == 'admin')
+                    @can ('admin-only')
                     <th>Aksi</th>
-                    @endif
+                    @endcan
                 </tr>
             </thead>
             <tbody>
@@ -26,7 +26,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->jenis_Berkas }}</td>
-                        @if (Auth::user()->role == 'admin')
+                        @can ('admin-only')
                         <td>
                             <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm"
                                 title="Edit"
@@ -39,7 +39,7 @@
                                 <x-adminlte-button class="show_confirm" data-nama="{{$item->jenis_Berkas}}" theme="danger" icon="fas fa-trash" size="sm" title="Hapus" type="submit" />
                             </form>
                         </td>
-                        @endif
+                        @endcan
                     </tr>
                 @empty
                     <tr>

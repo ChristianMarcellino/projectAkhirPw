@@ -57,6 +57,7 @@ class BankController extends Controller
      */
     public function edit(Bank $bank)
     {
+        Gate::authorize('admin-only');
         $notaris = Notaris::all();
         return view('bank.edit', compact('bank', 'notaris'));
     }
@@ -66,6 +67,7 @@ class BankController extends Controller
      */
     public function update(Request $request, Bank $bank)
     {
+        Gate::authorize('admin-only');
         $input = $request->validate([
             'nama_bank' => ['required', 'max:60', Rule::unique('bank', 'nama_bank')->ignore($bank->id)],
             'alamat_bank' => 'required|max:100',
@@ -82,6 +84,7 @@ class BankController extends Controller
      */
     public function destroy(Bank $bank)
     {
+        Gate::authorize('admin-only');
         $bank->delete();
         return redirect()->route('bank.index')->with('success', 'Data Bank Berhasil Dihapus');
     }

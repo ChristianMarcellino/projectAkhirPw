@@ -19,9 +19,9 @@
                     <th>Ketersediaan Berkas</th>
                     <th>Keterangan Berkas</th>
                     <th>Jenis Berkas</th>
-                    @if (Auth::user()->role == 'admin')
+                    @can ('admin-only')
                     <th>Aksi</th>
-                    @endif
+                    @endcan
                 </tr>
             </thead>
             <tbody>
@@ -32,7 +32,7 @@
                         <td>{{ $item->ketersediaan_berkas }}</td>
                         <td>{{ $item->keterangan_berkas }}</td>
                         <td>{{ $item->jenisBerkas->jenis_Berkas ?? "-" }}</td>
-                        @if (Auth::user()->role == 'admin')
+                        @can ('admin-only')
                         <td>
                             <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm"
                                 title="Edit"
@@ -45,7 +45,7 @@
                                 <x-adminlte-button theme="danger" class="show_confirm" data-nama="Berkas {{$item->konsumen->nama_konsumen}}" icon="fas fa-trash" size="sm" title="Hapus" type="submit" />
                             </form>
                         </td>
-                        @endif
+                        @endcan
                     </tr>
                 @empty
                     <tr>

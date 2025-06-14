@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JenisBerkas;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Gate;
 
 class JenisBerkasController extends Controller
 {
@@ -51,6 +52,7 @@ class JenisBerkasController extends Controller
      */
     public function edit(JenisBerkas $jenisBerkas)
     {
+        Gate::authorize('admin-only');
         return view('jenis_berkas.edit', compact('jenisBerkas'));
     }
 
@@ -59,6 +61,7 @@ class JenisBerkasController extends Controller
      */
     public function update(Request $request, JenisBerkas $jenis_berkas)
     {
+        Gate::authorize('admin-only');
          $input = $request->validate([
             'jenis_Berkas' => ['max:100','required', Rule::unique('jenis_berkas', 'jenis_Berkas')->ignore($jenis_berkas->id)],
         ]);
@@ -72,6 +75,7 @@ class JenisBerkasController extends Controller
      */
     public function destroy(JenisBerkas $jenisBerkas)
     {
+        Gate::authorize('admin-only');
         $jenisBerkas->delete();
         return redirect()->route('jenis_berkas.index')->with('success', 'Data Jenis Berkas Berhasil Dihapus');
     }

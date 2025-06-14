@@ -58,6 +58,7 @@ class BerkasKonsumenController extends Controller
      */
     public function edit(BerkasKonsumen $berkasKonsumen)
     {
+        Gate::authorize('admin-only');
         $konsumen = Konsumen::all();
         $jenisBerkas = JenisBerkas::all();
         return view('berkas_konsumen.edit', compact('berkasKonsumen', 'konsumen','jenisBerkas'));
@@ -68,6 +69,7 @@ class BerkasKonsumenController extends Controller
      */
     public function update(Request $request, BerkasKonsumen $berkas_konsumen)
     {
+        Gate::authorize('admin-only');
         $input = $request->validate([
             'konsumen_id' => 'required|exists:konsumen,id',
             'ketersediaan_berkas' => 'required|in:Tersedia,Belum Tersedia',
@@ -84,6 +86,7 @@ class BerkasKonsumenController extends Controller
      */
     public function destroy(BerkasKonsumen $berkasKonsumen)
     {
+        Gate::authorize('admin-only');
         $berkasKonsumen->delete();
         return redirect()->route('berkas_konsumen.index')->with('success', 'Data Berkas Konsumen Berhasil Dihapus');
     }

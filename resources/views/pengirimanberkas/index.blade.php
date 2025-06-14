@@ -20,9 +20,9 @@
                     <th>Nama Marketing</th>
                     <th>Tanggal Kirim</th>
                     <th>Status</th>
-                    @if (Auth::user()->role == 'admin')
+                    @can ('admin-only')
                         <th>Aksi</th>
-                    @endif
+                    @endcan
                 </tr>
             </thead>
             <tbody>
@@ -34,8 +34,7 @@
                         <td>{{ $item->marketing->nama_marketing ?? '-' }}</td>
                         <td>{{ \Carbon\Carbon::parse($item->tanggal_kirim)->format('d-m-Y') }}</td>
                         <td>{{ ucfirst($item->status ?? '-') }}</td>
-
-                        @if (Auth::user()->role == 'admin')
+                        @can ('admin-only')
                             <td>
                                 <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm"
                                     title="Edit"
@@ -49,7 +48,7 @@
                                         icon="fas fa-trash" size="sm" title="Hapus" type="submit" />
                                 </form>
                             </td>
-                        @endif
+                        @endcan
                     </tr>
                 @empty
                     <tr>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Proyek;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Gate;
 
 class ProyekController extends Controller
 {
@@ -58,6 +59,7 @@ class ProyekController extends Controller
      */
     public function edit(Proyek $proyek)
     {
+        Gate::authorize('admin-only');
         return view('proyek.edit',compact('proyek'));
     }
 
@@ -66,6 +68,7 @@ class ProyekController extends Controller
      */
     public function update(Request $request, Proyek $proyek)
     {
+        Gate::authorize('admin-only');
         $input = $request->validate([
             'no_pbg' => ['required',Rule::unique('proyek','no_pbg')->ignore($proyek->id),'max:19'],
             'nama_proyek' => ['required',Rule::unique('proyek','nama_proyek')->ignore($proyek->id)],
@@ -85,6 +88,7 @@ class ProyekController extends Controller
      */
     public function destroy(Proyek $proyek)
     {
+        Gate::authorize('admin-only');
         $proyek->delete();
         return redirect()->route('proyek.index')->with('success', 'Data Proyek Berhasil Dihapus');
     }

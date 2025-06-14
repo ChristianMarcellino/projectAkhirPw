@@ -19,9 +19,9 @@
                     <th>Nama Marketing</th>
                     <th>Nomor Telepon</th>
                     <th>Tanggal Masuk</th>
-                    @if (Auth::user()->role == 'admin')
+                    @can ('admin-only')
                     <th>Aksi</th>
-                    @endif
+                    @endcan
                 </tr>
             </thead>
             <tbody>
@@ -32,7 +32,7 @@
                         <td>{{ $item->nama_marketing }}</td>
                         <td>{{ $item->no_telp_marketing }}</td>
                         <td>{{ $item->tanggal_masuk }}</tdf>
-                        @if (Auth::user()->role == 'admin')
+                        @can ('admin-only')
                         <td>
                             <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm"
                                 title="Edit"
@@ -45,7 +45,7 @@
                                 <x-adminlte-button class="show_confirm" data-nama="{{$item->nama_marketing}}" theme="danger" icon="fas fa-trash" size="sm" title="Hapus" type="submit" />
                             </form>
                         </td>
-                        @endif
+                        @endcan
                     </tr>
                 @empty
                     <tr>

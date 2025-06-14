@@ -56,6 +56,7 @@ class BiCheckingController extends Controller
      */
     public function edit(BiChecking $biChecking)
     {
+        Gate::authorize('admin-only');
         $konsumen = Konsumen::all();
         return view('bi_checking.edit', compact('biChecking', 'konsumen'));
     }
@@ -65,6 +66,7 @@ class BiCheckingController extends Controller
      */
     public function update(Request $request, BiChecking $bi_checking)
     {
+        Gate::authorize('admin-only');
         $input = $request->validate([
             'konsumen_id' => ['required','exists:konsumen,id',Rule::unique('bi_checking','konsumen_id')->ignore($bi_checking->id)],
             'hasil_checking' => 'required|in:kol 1,kol 2,kol 3,kol 4,kol 5',
@@ -80,6 +82,7 @@ class BiCheckingController extends Controller
      */
     public function destroy(BiChecking $biChecking)
     {
+        Gate::authorize('admin-only');
         $biChecking->delete();
         return redirect()->route('bi_checking.index')->with('success', 'Data Bi Checking Berhasil Dihapus');
     }

@@ -6,6 +6,7 @@ use App\Models\Notaris;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Gate;
 
 class NotarisController extends Controller
 {
@@ -55,6 +56,7 @@ class NotarisController extends Controller
      */
     public function edit(Notaris $notaris)
     {
+        Gate::authorize('admin-only');
         return view('notaris.edit', compact('notaris'));
     }
 
@@ -63,6 +65,7 @@ class NotarisController extends Controller
      */
     public function update(Request $request, Notaris $notaris)
     {
+        Gate::authorize('admin-only');
         $input = $request->validate([
             'nik_notaris' => ['max:16', 'required', Rule::unique('notaris', 'nik_notaris')->ignore($notaris->id)],
             'nama_notaris' => 'max:50|required',
@@ -80,6 +83,7 @@ class NotarisController extends Controller
      */
     public function destroy(Notaris $notaris)
     {
+        Gate::authorize('admin-only');
         $notaris->delete();
         return redirect()->route('notaris.index')->with('success', 'Data Notaris Berhasil Dihapus');
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Marketing;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Gate;
 
 class MarketingController extends Controller
 {
@@ -54,6 +55,7 @@ class MarketingController extends Controller
      */
     public function edit(Marketing $marketing)
     {
+        Gate::authorize('admin-only');
         return view('marketing.edit', compact('marketing'));
     }
 
@@ -62,6 +64,7 @@ class MarketingController extends Controller
      */
     public function update(Request $request, Marketing $marketing)
     {
+        Gate::authorize('admin-only');
         $input = $request->validate([
             'nik_marketing' => ['max:16','required',Rule::unique('marketing', 'nik_marketing')->ignore($marketing->id)],
             'nama_marketing' => 'max:50|required',
@@ -78,6 +81,7 @@ class MarketingController extends Controller
      */
     public function destroy(Marketing $marketing)
     {
+        Gate::authorize('admin-only');
         $marketing->delete();
         return redirect()->route('marketing.index')->with('success', 'Data Marketing Berhasil Dihapus');
     }
