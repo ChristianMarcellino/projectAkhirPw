@@ -1,0 +1,59 @@
+@extends('adminlte::page')
+
+@section('title', 'Data Bi Checking')
+
+@section('content_header')
+    <h1>@yield('title')</h1>
+@endsection
+
+@section('content')
+    <x-adminlte-button label="Tambah Bi Checking" theme="success" icon="fas fa-plus" class="mb-3"
+        onclick="window.location='{{ route('bi_checking.create') }}'" />
+
+    <x-adminlte-card title="Daftar Bi Checking" theme="info" icon="fas fa-list">
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>ID Checking</th>
+                    <th>Nama Konsumen</th>
+                    <th>Hasil Checking</th>
+                    <th>Tanggal Checking</th>
+                    @if (Auth::user()->role == 'admin')
+                    <th>Aksi</th>
+                    @endif
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($biChecking as $item)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->id_checking }}</td>
+                        <td>{{ $item->konsumen->nama_konsumen ?? '-'}}</td>
+                        <td>{{ $item->hasil_checking }}</td>
+                        <td>{{ $item->tanggal_checking }}</tdf>
+                        @if (Auth::user()->role == 'admin')
+                        <td>
+                            <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm"
+                                title="Edit"
+                                onclick="window.location='{{ route('bi_checking.edit', $item->id) }}'" />
+
+                            <form action="{{ route('bi_checking.destroy', $item->id) }}" method="POST"
+                                style="display:inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <x-adminlte-button class="show_confirm" data-nama="Bi Checking {{$item->konsumen->nama_konsumen}}" theme="danger" icon="fas fa-trash" size="sm" title="Hapus" type="submit" />
+                            </form>
+                        </td>
+                        @endif
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="9" class="text-center">Tidak ada data bi checking.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </x-adminlte-card>
+@endsection
+
