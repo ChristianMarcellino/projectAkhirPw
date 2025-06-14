@@ -30,7 +30,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->konsumen->nama_konsumen ?? '-'}}<td>
-                        <td>{{ $item->nama_bank }}</td>
+                        <td>{{ $item->bank->nama_bank }}</td>
                         <td>{{ $item->marketing->nama_marketing ?? '-' }}</td>
                         <td>{{ $item->tanggal_kirim }}</td>
                         <td>{{ $item->status ?? '-'}}</tdf>
@@ -38,9 +38,9 @@
                         <td>
                             <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm"
                                 title="Edit"
-                                onclick="window.location='{{ route('bank.edit', $item->id) }}'" />
+                                onclick="window.location='{{ route('pengirimanberkas.edit', $item->id) }}'" />
 
-                            <form action="{{ route('bank.destroy', $item->id) }}" method="POST"
+                            <form action="{{ route('pengirimanberkas.destroy', $item->id) }}" method="POST"
                                 style="display:inline-block">
                                 @csrf
                                 @method('DELETE')

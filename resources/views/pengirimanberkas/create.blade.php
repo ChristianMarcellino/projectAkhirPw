@@ -18,46 +18,62 @@
                         <label for="nik_konsumen">NIK Konsumen</label>
                         <select name="nik_konsumen" class="form-control @error('nik_konsumen') is-invalid @enderror">
                             <option value="">-- Pilih NIK konsumen --</option>
-                            @foreach($nik_konsumen as $item)
-                                <option value="{{ $item->id }}" {{ old('nik_konsumen') == $item->id ? 'selected' : '' }}>
+                            @foreach($konsumen as $item)
+                                <option value="{{ $item->id }}" {{ old('konsumen') == $item->id ? 'selected' : '' }}>
                                     {{ $item->nik_konsumen }}
                                 </option>
                             @endforeach
                         </select>
-                        @error('notaris_id')
-                            <span class="invalid-feedback">{{ $message }}</span>
-                        @enderror                        @error('nik_konsumen')
+                        @error('nik_konsumen')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="nama_bank">Nama Bank</label>
-                        <input type="text" name="nama_bank" class="form-control @error('nama_bank') is-invalid @enderror" value="{{ old('nama_bank') }}" maxlength="60">
+                        <label for="bank">Nama Bank</label>
+                        <select name="bank" class="form-control @error('bank') is-invalid @enderror">
+                            <option value="">-- Pilih bank --</option>
+                            @foreach($bank as $item)
+                                <option value="{{ $item->nama_bank }}" {{ old('Bank') == $item->id ? 'selected' : '' }}>
+                                    {{ $item->nama_bank }}
+                                </option>
+                            @endforeach
+                        </select>
                         @error('nama_bank')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="no_telp_bank">Nomer Telepon Bank</label>
-                        <input type="tel" pattern="^(07|08)[0-9]{8,11}$" placeholder="Nomer Telepon Diawali dengan 08 atau 07" minlength="10" maxlength="13" name="no_telp_bank" class="form-control @error('no_telp_bank') is-invalid @enderror" value="{{ old('no_telp_bank') }}">
-                        @error('no_telp_bank')
-                            <span class="invalid-feedback">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="notaris_id">Nama Notaris</label>
-                        <select name="notaris_id" class="form-control @error('notaris_id') is-invalid @enderror">
-                            <option value="">-- Pilih Notaris --</option>
-                            @foreach($notaris as $item)
-                                <option value="{{ $item->id }}" {{ old('notaris_id') == $item->id ? 'selected' : '' }}>
-                                    {{ $item->nama_notaris }}
+                        <label for="marketing">Nama Marketing</label>
+                        <select name="marketing" class="form-control @error('marketing') is-invalid @enderror">
+                            <option value="">-- Pilih Marketing --</option>
+                            @foreach($marketing as $item)
+                                <option value="{{ $item->nik_marketing }}" {{ old('notaris_id') == $item->id ? 'selected' : '' }}>
+                                    {{ $item->nik_marketing }}
                                 </option>
                             @endforeach
                         </select>
                         @error('notaris_id')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal_kirim">Tanggal Kirim</label>
+                        <input type="date" name="tanggal_kirim" class="form-control @error('no_telp_bank') is-invalid @enderror" value="{{ old('tanggal_kirim') }}">
+                        @error('tanggal_kirim')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status Pengiriman</label>
+                        <select name="status" class="form-control @error('status') is-invalid @enderror">
+                            <option value="">-- Pilih Status --</option>
+                            <option value="diterima" {{ old('status') == 'diterima' ? 'selected' : '' }}>Diterima</option>
+                            <option value="diproses" {{ old('status') == 'diproses' ? 'selected' : '' }}>Diproses</option>
+                            <option value="ditolak" {{ old('status') == 'ditolak' ? 'selected' : '' }}>Ditolak</option>
+                        </select>
+                        @error('status')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
