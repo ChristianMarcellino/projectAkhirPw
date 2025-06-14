@@ -14,10 +14,9 @@
         <table class="table table-bordered table-hover table-striped">
             <thead>
                 <tr>
-                    <th>No</th>
                     <th>Nama Konsumen</th>
                     <th>Ketersediaan Berkas</th>
-                    <th>Keterangan Berkas</th>
+                    <th>keterangan Berkas</th>
                     <th>Jenis Berkas</th>
                     @if (Auth::user()->role == 'admin')
                     <th>Aksi</th>
@@ -31,7 +30,7 @@
                         <td>{{ $item->konsumen->nama_konsumen ?? '-'}}</td>
                         <td>{{ $item->ketersediaan_berkas }}</td>
                         <td>{{ $item->keterangan_berkas }}</td>
-                        <td>{{ $item->jenisBerkas->jenis_Berkas ?? "-" }}</td>
+                        <td>{{ $item->JenisBerkas->jenis_Berkas }}</td>
                         @if (Auth::user()->role == 'admin')
                         <td>
                             <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm"

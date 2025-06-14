@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BerkasKonsumen extends Model
 {
-    protected $table = 'berkas_konsumen';
+    protected $table = 'bi_checking';
     use HasUuids;
     protected $fillable = [
         
@@ -19,7 +19,7 @@ class BerkasKonsumen extends Model
 
     public function konsumen()
     {
-        return $this->belongsTo(Konsumen::class, 'konsumen_id', 'id');
+        return $this->belongsTo(konsumen::class, 'konsumen_id', 'id');
     }
     public function jenisBerkas()
     {

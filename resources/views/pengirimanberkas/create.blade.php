@@ -18,13 +18,15 @@
                         <label for="nik_konsumen">NIK Konsumen</label>
                         <select name="nik_konsumen" class="form-control @error('nik_konsumen') is-invalid @enderror">
                             <option value="">-- Pilih NIK konsumen --</option>
-                            @foreach($konsumen as $item)
+                            @foreach($nik_konsumen as $item)
                                 <option value="{{ $item->id }}" {{ old('nik_konsumen') == $item->id ? 'selected' : '' }}>
                                     {{ $item->nik_konsumen }}
                                 </option>
                             @endforeach
                         </select>
-                        @error('nik_konsumen')
+                        @error('notaris_id')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror                        @error('nik_konsumen')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
@@ -63,7 +65,7 @@
             </div>
 
             <div class="text-right">
-                <a href="{{ route('pengiriman_berkas.index') }}" class="btn btn-secondary">Kembali</a>
+                <a href="{{ route('bank.index') }}" class="btn btn-secondary">Kembali</a>
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </form>

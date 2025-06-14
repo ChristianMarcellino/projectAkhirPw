@@ -34,7 +34,8 @@ class BiCheckingController extends Controller
     public function store(Request $request)
     {
         $input = $request->validate([
-            'konsumen_id' => 'required|exists:konsumen,id|unique:bi_checking',
+            'id_checking' => 'required|max:16|unique:bi_checking',
+            'konsumen_id' => 'required|exists:konsumen,id',
             'hasil_checking' => 'required|in:kol 1,kol 2,kol 3,kol 4,kol 5',
             'tanggal_checking' => 'required|date',
         ]);
@@ -63,15 +64,16 @@ class BiCheckingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BiChecking $bi_checking)
+    public function update(Request $request, BiChecking $biChecking)
     {
         $input = $request->validate([
-            'konsumen_id' => ['required','exists:konsumen,id',Rule::unique('bi_checking','konsumen_id')->ignore($bi_checking->id)],
+            'id_checking' => 'required|max:16|unique:bi_checking,id_checking,' . $biChecking->id,
+            'konsumen_id' => 'required|exists:konsumen,id',
             'hasil_checking' => 'required|in:kol 1,kol 2,kol 3,kol 4,kol 5',
             'tanggal_checking' => 'required|date',
         ]);
 
-        $bi_checking->update($input);
+        $biChecking->update($input);
         return redirect()->route('bi_checking.index')->with('success', 'Data Bi Checking Berhasil Diupdate');
     }
 

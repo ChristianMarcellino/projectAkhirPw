@@ -29,8 +29,7 @@
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
-                </div>
-                <div class="col-md-6">
+
                     <div class="form-group">
                         <label for="no_telp_marketing">Nomer Telepon Marketing</label>
                         <input type="tel" pattern="^(07|08)[0-9]{8,11}$" placeholder="Nomer Telepon Diawali dengan 08 atau 07" minlength="10" maxlength="13" name="no_telp_marketing" class="form-control @error('no_telp_marketing') is-invalid @enderror" value="{{ old('no_telp_marketing') }}">
@@ -38,6 +37,9 @@
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
+                </div>
+
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="tanggal_masuk">Tanggal Masuk</label>
                         <input type="date" name="tanggal_masuk" class="form-control @error('tanggal_masuk') is-invalid @enderror" value="{{ old('tanggal_masuk') }}">
@@ -45,6 +47,7 @@
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
+
                 </div>
             </div>
 

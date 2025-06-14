@@ -10,6 +10,7 @@ class BiChecking extends Model
     protected $table = 'bi_checking';
     use hasUuids;
     protected $fillable = [
+        'id_checking',
         'konsumen_id',
         'hasil_checking',
         'tanggal_checking',

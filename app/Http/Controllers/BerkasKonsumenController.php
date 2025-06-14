@@ -15,8 +15,7 @@ class BerkasKonsumenController extends Controller
     public function index()
     {
         $berkasKonsumen = BerkasKonsumen::all();
-        $jenisBerkas = JenisBerkas::all();
-        return view('berkas_konsumen.index', compact('berkasKonsumen','jenisBerkas'));
+        return view('berkas_konsumen.index', compact('berkasKonsumen'));
     }
 
     /**
@@ -35,10 +34,10 @@ class BerkasKonsumenController extends Controller
     public function store(Request $request)
     {
          $input = $request->validate([
-            'konsumen_id' => 'required|exists:konsumen,id',
-            'ketersediaan_berkas' => 'required|in:Tersedia,Belum Tersedia',
+            'konsumen_id' => 'max:16|required|exists:konsumen,id',
+            'ketersediaan_berkas' => 'required|in:Tersedia, Belum Tersedia',
             'keterangan_berkas' => 'required',
-            'berkas_id' => 'required|exists:jenis_berkas,id'
+            'berkas_id' => 'required|exists:berkas,id'
         ]);
 
         BerkasKonsumen::create($input);
@@ -69,10 +68,10 @@ class BerkasKonsumenController extends Controller
     public function update(Request $request, BerkasKonsumen $berkas_konsumen)
     {
         $input = $request->validate([
-            'konsumen_id' => 'required|exists:konsumen,id',
-            'ketersediaan_berkas' => 'required|in:Tersedia,Belum Tersedia',
+            'konsumen_id' => 'max:16|required|exists:konsumen,id',
+            'ketersediaan_berkas' => 'required|in:Tersedia, Belum Tersedia',
             'keterangan_berkas' => 'required',
-            'berkas_id' => 'required|exists:jenis_berkas,id'
+            'berkas_id' => 'required|exists:berkas,id'
         ]);
 
         $berkas_konsumen->update($input);
