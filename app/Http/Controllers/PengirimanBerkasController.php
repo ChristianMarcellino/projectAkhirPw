@@ -1,4 +1,4 @@
-<?phpMore actions
+<?php
 
 namespace App\Http\Controllers;
 
@@ -29,14 +29,12 @@ class PengirimanBerkasController extends Controller
      */
     public function create()
     {
-        //
+    $konsumen = Konsumen::all();
+    $bank = Bank::all();
+    $marketing = Marketing::all();
 
-        $konsumen = Konsumen::all();
-        $bank = Bank::all();
-        $marketing = Marketing::all();
-        return view('pengirimanberkas.create', compact('konsumen', 'bank', 'marketing'));
+    return view('pengirimanberkas.create', compact('konsumen', 'bank', 'marketing'));
     }
-
     /**
      * Store a newly created resource in storage.
      */
