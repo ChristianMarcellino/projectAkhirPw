@@ -9,32 +9,20 @@ class PengirimanBerkas extends Model
     //
     use HasUuids;
     protected $table = 'pengiriman_berkas';
-    protected $fillable = [
-        'id',
-        'nik_konsumen',
-        'nama_bank',
-        'nik_marketing',
-        'tanggal_kirim',
-        'status'
-    ];
+    protected $fillable = ['id_konsumen', 'id_bank', 'id_marketing', 'tanggal_kirim', 'status'];
     protected $casts = [
         'tanggal_kirim' => 'date',
     ];
     public function konsumen()
     {
-        return $this->belongsTo(Konsumen::class, 'nik_konsumen', 'nik');
+        return $this->belongsTo(Konsumen::class, 'id_konsumen', 'id');
     }
     public function bank()
     {
-        return $this->belongsTo(Bank::class, 'nama_bank', 'id');
+        return $this->belongsTo(Bank::class, 'id_bank', 'id');
     }
     public function marketing()
     {
-        return $this->belongsTo(Marketing::class, 'nik_marketing', 'nik');
-    }
-
-    public function notaris()
-    {
-        return $this->belongsTo(Notaris::class, 'nik_notaris', 'nik');
+        return $this->belongsTo(Marketing::class, 'id_marketing', 'id');
     }
 }
