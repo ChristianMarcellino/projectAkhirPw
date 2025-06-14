@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Data Bank')
+@section('title', 'Data Jenis Berkas')
 
 @section('content_header')
     <h1>@yield('title')</h1>
@@ -8,37 +8,32 @@
 
 @section('content')
     <x-adminlte-button label="Tambah Bank" theme="success" icon="fas fa-plus" class="mb-3"
-        onclick="window.location='{{ route('bank.create') }}'" />
+        onclick="window.location='{{ route('jenis_berkas.create') }}'" />
 
-    <x-adminlte-card title="Daftar Bank" theme="info" icon="fas fa-list">
+    <x-adminlte-card title="Daftar Jenis Berkas" theme="info" icon="fas fa-list">
         <table class="table table-bordered table-hover table-striped">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Nama Bank</th>
-                    <th>Alamat bank</th>
-                    <th>No Telepon bank</th>
-                    <th>Nama Notaris</th>
+                    <th>Id Berkas</th>
+                    <th>Jenis Berkas</th>
                     @if (Auth::user()->role == 'admin')
                     <th>Aksi</th>
                     @endif
                 </tr>
             </thead>
             <tbody>
-                @forelse($bank as $item)
+                @forelse($jenis_berkas as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->nama_bank }}</td>
-                        <td>{{ $item->alamat_bank }}</td>
-                        <td>{{ $item->no_telp_bank }}</td>
-                        <td>{{ $item->notaris->nama_notaris ?? '-'}}</td>
+                        <td>{{ $item->id_berkas }}</td>
+                        <td>{{ $item->jenis_Berkas }}</td>
                         @if (Auth::user()->role == 'admin')
                         <td>
                             <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm"
                                 title="Edit"
-                                onclick="window.location='{{ route('bank.edit', $item->id) }}'" />
+                                onclick="window.location='{{ route('jenis_berkas.edit', $item->id) }}'" />
 
-                            <form action="{{ route('bank.destroy', $item->id) }}" method="POST"
+                            <form action="{{ route('jenis_berkas.destroy', $item->id) }}" method="POST"
                                 style="display:inline-block">
                                 @csrf
                                 @method('DELETE')
@@ -49,7 +44,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="9" class="text-center">Tidak ada data bank.</td>
+                        <td colspan="9" class="text-center">Tidak ada data jenis_berkas.</td>
                     </tr>
                 @endforelse
             </tbody>

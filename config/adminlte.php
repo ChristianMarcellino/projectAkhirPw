@@ -357,6 +357,22 @@ return [
             'url' => 'bi_checking',
             'icon' => 'far fa-fw fa-file',
         ],
+         [
+            'text' => 'Akad',
+            'url' => 'akad',
+            'icon' => 'far fa-fw fa-file',
+        ],
+         [
+            'text' => 'Jenis_Berkas',
+            'url' => 'jenis_berkas',
+            'icon' => 'far fa-fw fa-file',
+        ],
+         [
+            'text' => 'Berkas_Konsumen',
+            'url' => 'berkas_konsumen',
+            'icon' => 'far fa-fw fa-file',
+        ],
+        
         [
             'text' => 'Pengiriman Berkas',
             'url' => 'pengirimanberkas',

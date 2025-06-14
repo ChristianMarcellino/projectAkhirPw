@@ -1,13 +1,16 @@
 <?php
 
+use App\Http\Controllers\AkadController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProyekController;
 use App\Http\Controllers\RumahController;
 use App\Http\Controllers\MarketingController;
 use App\Http\Controllers\NotarisController;
 use App\Http\Controllers\BankController;
+use App\Http\Controllers\BerkasKonsumenController;
 use App\Http\Controllers\KonsumenController;
 use App\Http\Controllers\BiCheckingController;
+use App\Http\Controllers\JenisBerkasController;
 use App\Http\Controllers\PengirimanBerkasController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,5 +42,10 @@ Route::resource('/bi_checking', BiCheckingController::class);
 Route::resource('pengirimanberkas', PengirimanBerkasController::class)->parameters([
     'pengirimanberkas' => 'pengirimanberkas'
 ]);
+
+Route::resource('/akad', AkadController::class);
+Route::resource('/jenis_berkas', JenisBerkasController::class);
+Route::resource('/berkas_konsumen', BerkasKonsumenController::class);
+
 
 require __DIR__.'/auth.php';
