@@ -30,7 +30,6 @@ class PengirimanBerkasController extends Controller
     public function create()
     {
         //
-        $pengirimanBerkas = PengirimanBerkas::all();
         $konsumen = Konsumen::all();
         $bank = Bank::all();
         $marketing = Marketing::all();
@@ -44,9 +43,9 @@ class PengirimanBerkasController extends Controller
     {
         //
         $request->validate([
-            'nik_konsumen' => 'required|string|max:16',
-            'nama_bank' => 'required|string|max:60',
-            'nik_marketing' => 'required|string|max:16',
+            'id_konsumen' => 'required',
+            'id_bank' => 'required',
+            'id_marketing' => 'required',
             'tanggal_kirim' => 'required|date',
             'status' => 'required|in:diterima,diproses,ditolak',
         ]);
@@ -71,7 +70,10 @@ class PengirimanBerkasController extends Controller
     public function edit(PengirimanBerkas $pengirimanBerkas)
     {
         //
-        return view('pengirimanberkas.edit', compact('pengirimanBerkas'));
+        $konsumen = Konsumen::all();
+$bank = Bank::all();
+$marketing = Marketing::all();
+return view('pengirimanberkas.edit', compact('pengirimanBerkas', 'konsumen', 'bank', 'marketing'));
     }
 
     /**
@@ -81,9 +83,9 @@ class PengirimanBerkasController extends Controller
     {
         //
         $request->validate([
-            'nik_konsumen' => 'required|string|max:16',
-            'nama_bank' => 'required|string|max:60',
-            'nik_marketing' => 'required|string|max:16',
+            'id_konsumen' => 'required',
+            'id_bank' => 'required',
+            'id_marketing' => 'required',
             'tanggal_kirim' => 'required|date',
             'status' => 'required|in:diterima,diproses,ditolak',
         ]);
