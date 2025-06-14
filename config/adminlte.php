@@ -368,6 +368,11 @@ return [
             'url' => 'pengirimanberkas',
             'icon' => 'far fa-fw fa-file',
         ],
+        [
+            'text' => 'Transaksi',
+            'url' => 'transaksi',
+            'icon' => 'far fa-fw fa-file',
+        ],
     ],
 
     /*

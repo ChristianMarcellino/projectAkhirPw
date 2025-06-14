@@ -13,6 +13,7 @@ use App\Http\Controllers\KonsumenController;
 use App\Http\Controllers\BiCheckingController;
 use App\Http\Controllers\JenisBerkasController;
 use App\Http\Controllers\PengirimanBerkasController;
+use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -38,7 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('pengirimanberkas', PengirimanBerkasController::class)->parameters([
         'pengirimanberkas' => 'pengirimanberkas'
     ]);
-
+    Route::resource('/transaksi', TransaksiController::class);
+    
     Route::resource('/akad', AkadController::class);
     Route::resource('/jenis_berkas', JenisBerkasController::class)->parameters([
         'jenis_berkas' => 'jenis_berkas'
