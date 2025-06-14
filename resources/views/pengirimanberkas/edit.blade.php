@@ -3,7 +3,7 @@
 @section('title', 'Edit Pengiriman Berkas')
 
 @section('content_header')
-    <h1>Edit Pengiriman Berkas</h1>
+    <h1>@yield('title')</h1>
 @stop
 
 @section('content')
