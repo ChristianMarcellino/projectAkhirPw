@@ -27,12 +27,13 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <select name="no_pbg" class="form-control">
+                    <select name="proyek_id" class="form-control">
                         <option value="">-- Filter Proyek --</option>
                         @foreach($proyek as $item)
-                            <option value="{{ $item->proyek_id }}" {{ request('proyek_id') == $item->proyek_id ? 'selected' : '' }}>
-                                {{ $item->nama_proyek }}
-                            </option>
+                        <option value="{{ $item->id }}" {{ request('proyek_id') == $item->id ? 'selected' : '' }}>
+                            {{ $item->nama_proyek }}
+                        </option>
+                        
                         @endforeach
                     </select>
                 </div>

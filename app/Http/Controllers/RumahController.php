@@ -24,8 +24,7 @@ class RumahController extends Controller
         $query->where('proyek_id', $request->proyek_id);
         }
         if($request->filled('blok_rumah')){
-            $blok = preg_replace('/[0-9]/',' ',$request->input('blok_rumah'));
-            $query->where('blok_rumah','LIKE',$blok . '%');
+            $query->where('blok_rumah', 'LIKE', '%' . $request->blok_rumah . '%');
         }
 
         $rumah= $query->get();
