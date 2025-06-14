@@ -29,7 +29,8 @@
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
-
+                </div>
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="no_telp_bank">Nomer Telepon Bank</label>
                         <input type="tel" pattern="^(07|08)[0-9]{8,11}$" minlength="10" maxlength="13" name="no_telp_bank" class="form-control @error('no_telp_bank') is-invalid @enderror" value="{{ old('no_telp_bank') ? old('no_telp_bank') : $bank->no_telp_bank}}">

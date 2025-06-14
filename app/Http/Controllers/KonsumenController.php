@@ -44,7 +44,6 @@ class KonsumenController extends Controller
             'marketing_id' => 'required|exists:marketing,id'
         ]);
 
-        $input['id'] = Str::uuid();
         Konsumen::create($input);
         return redirect()->route('konsumen.index')->with('success', 'Data Konsumen Berhasil Ditambah');
     }

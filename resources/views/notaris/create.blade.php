@@ -11,7 +11,6 @@
     <div class="card-body">
         <form action="{{ route('notaris.store') }}" method="POST">
             @csrf
-
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -29,7 +28,8 @@
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
-
+                </div>
+                <div class="col-md-6">
                      <div class="form-group">
                         <label for="alamat_notaris">Alamat Notaris</label>
                         <input type="text" name="alamat_notaris" maxlength="100" class="form-control @error('alamat_notaris') is-invalid @enderror" value="{{ old('alamat_notaris') }}" maxlength="100">
