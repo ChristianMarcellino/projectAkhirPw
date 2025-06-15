@@ -13,6 +13,6 @@ class Bank extends Model
 
     public function notaris()
     {
-        return $this->belongsTo(Notaris::class, 'notaris_id', 'id');
+        return $this->belongsTo(Notaris::class, 'notaris_id', 'id'); 
     }
 }
