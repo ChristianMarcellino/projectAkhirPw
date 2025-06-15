@@ -9,7 +9,22 @@
 @section('content')
     <x-adminlte-button label="Tambah Akad" theme="success" icon="fas fa-plus" class="mb-3"
         onclick="window.location='{{ route('akad.create') }}'" />
-
+        <form method="GET" action="{{ route('akad.index') }}" class="mb-3">
+            <div class="row align-items-end">
+                <div class="col-md-3">
+                    <label for="tanggal_akad_awal">Tanggal Akad Dimulai Dari</label>
+                    <input class="form-control" type="date" name="tanggal_akad_awal" id="tanggal_akad_awal" value="{{ request('tanggal_akad_awal') }}"/>
+                </div>
+                <div class="col-md-3">
+                    <label for="tanggal_akad_akhir">Tanggal Akad Hingga</label>
+                    <input class="form-control" type="date" name="tanggal_akad_akhir" id="tanggal_akad_akhir" value="{{ request('tanggal_akad_akhir') }}"/>
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                    <a href="{{ route('akad.index') }}" class="btn btn-secondary">Reset</a>
+                </div>
+            </div>
+        </form>
     <x-adminlte-card title="Daftar Akad" theme="info" icon="fas fa-list">
         <div class="table-responsive">
             <table class="table table-bordered table-hover table-striped w-100">
@@ -27,7 +42,7 @@
                 <tbody>
                     @forelse($akad as $item)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $loop->iteration  + ($akad->currentPage() - 1) * $akad->perPage() }}</td>
                             <td>{{ $item->konsumen->nama_konsumen ?? '-' }}</td>
                             <td>{{ $item->tanggal_akad }}</td>
                             <td>{{ $item->tempat_akad }}</td>
@@ -53,6 +68,17 @@
                     @endforelse
                 </tbody>
             </table>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <div>
+                <p class="mb-0">
+                    Menampilkan {{ $akad->firstItem() }} sampai {{ $akad->lastItem() }} dari total {{ $akad->total() }} data.
+                </p>
+            </div>
+            <div>
+                {{ $akad->appends(request()->query())->links('pagination::bootstrap-4') }}
+            </div>
         </div>
     </x-adminlte-card>
 @endsection

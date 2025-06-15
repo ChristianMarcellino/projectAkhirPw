@@ -15,7 +15,7 @@ class BerkasKonsumenController extends Controller
      */
     public function index()
     {
-        $berkasKonsumen = BerkasKonsumen::all();
+        $berkasKonsumen=BerkasKonsumen::paginate(10);
         $jenisBerkas = JenisBerkas::all();
         return view('berkas_konsumen.index', compact('berkasKonsumen','jenisBerkas'));
     }

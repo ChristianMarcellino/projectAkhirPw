@@ -18,8 +18,18 @@ class KonsumenController extends Controller
         if($request->filled('nama_konsumen')){
             $query->where('nama_konsumen', 'LIKE', '%' . $request->nama_konsumen . '%');
         }
-        $konsumen = $query->paginate(1);
-        return view('konsumen.index', compact('konsumen'));
+        if($request->filled('marketing_id')){
+            $query->where('marketing_id',$request->marketing_id);
+        }
+        if($request->filled('status_pernikahan')){
+            $query->where('status_pernikahan',$request->status_pernikahan);
+        }
+        if($request->filled('gaji')){
+            $query->where('gaji', '>=', $request->gaji);
+        }
+        $konsumen = $query->paginate(10);
+        $marketing = Marketing::all();
+        return view('konsumen.index', compact('konsumen', 'marketing'));
     }
     /**
      * Show the form for creating a new resource.
@@ -44,7 +54,7 @@ class KonsumenController extends Controller
             'alamat_konsumen' => 'max:100|required',
             'gaji' => 'required|integer|min:0|max:2000000000',
             'status_pernikahan' => 'required|in:Menikah,Cerai Hidup,Cerai Mati,Belum Menikah',
-            'rumah_id' => 'required|exists:rumah,id',
+            'rumah_id' => 'required|exists:rumah,id|unique:konsumen',
             'bank_id' => 'required|max:60|exists:bank,id',
             'marketing_id' => 'required|exists:marketing,id'
         ]);
@@ -86,7 +96,7 @@ class KonsumenController extends Controller
             'alamat_konsumen' => 'max:100|required',
             'gaji' => 'required|integer|min:0|max:2000000000',
             'status_pernikahan' => 'required|in:Menikah,Cerai Hidup,Cerai Mati,Belum Menikah',
-            'rumah_id' => 'required|exists:rumah,id',
+            'rumah_id' => 'required|exists:rumah,id|unique:konsumen',
             'bank_id' => 'required|max:60|exists:bank,id',
             'marketing_id' => 'required|exists:marketing,id'
         ]);

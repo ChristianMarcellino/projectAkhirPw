@@ -31,7 +31,7 @@
                 <tbody>
                     @forelse($proyek as $item)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $loop->iteration  + ($proyek->currentPage() - 1) * $proyek->perPage() }}</td>
                             <td>{{ $item->no_pbg }}</td>
                             <td>{{ $item->nama_proyek }}</td>
                             <td>{{ $item->jumlah_unit }}</td>
@@ -61,6 +61,16 @@
                     @endforelse
                 </tbody>
             </table>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <div>
+                <p class="mb-0">
+                    Menampilkan {{ $proyek->firstItem() }} sampai {{ $proyek->lastItem() }} dari total {{ $proyek->total() }} data.
+                </p>
+            </div>
+            <div>
+                {{ $proyek->appends(request()->query())->links('pagination::bootstrap-4') }}
+            </div>
         </div>
     </x-adminlte-card>
 @endsection

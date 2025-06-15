@@ -14,7 +14,7 @@ class JenisBerkasController extends Controller
      */
     public function index()
     {
-        $jenisBerkas = JenisBerkas::all();
+        $jenisBerkas = JenisBerkas::paginate(10);
         return view('jenis_berkas.index', compact('jenisBerkas'));
     }
 

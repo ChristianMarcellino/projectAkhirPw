@@ -13,9 +13,16 @@ class AkadController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $akad=Akad::all();
+        $query = Akad::query();
+        if($request->filled('tanggal_akad_awal')){
+            $query->where('tanggal_akad', '>=', $request->tanggal_akad_awal);
+        }
+        if($request->filled('tanggal_akad_akhir')){
+            $query->where('tanggal_akad', '<=', $request->tanggal_akad_akhir);
+        }
+        $akad=$query->paginate(10);
         return view('akad.index', compact('akad'));
     }
 

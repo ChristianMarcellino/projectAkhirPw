@@ -28,7 +28,7 @@
                 <tbody>
                     @forelse($berkasKonsumen as $item)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $loop->iteration  + ($berkasKonsumen->currentPage() - 1) * $berkasKonsumen->perPage() }}</td>
                             <td>{{ $item->konsumen->nama_konsumen ?? '-'}}</td>
                             <td>{{ $item->ketersediaan_berkas }}</td>
                             <td>{{ $item->keterangan_berkas }}</td>
@@ -55,6 +55,16 @@
                     @endforelse
                 </tbody>
             </table>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <div>
+                <p class="mb-0">
+                    Menampilkan {{ $berkasKonsumen->firstItem() }} sampai {{ $berkasKonsumen->lastItem() }} dari total {{ $berkasKonsumen->total() }} data.
+                </p>
+            </div>
+            <div>
+                {{ $berkasKonsumen->appends(request()->query())->links('pagination::bootstrap-4') }}
+            </div>
         </div>
     </x-adminlte-card>
 @endsection

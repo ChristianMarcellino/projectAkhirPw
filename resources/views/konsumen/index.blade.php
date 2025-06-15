@@ -15,6 +15,28 @@
                 <div class="col-md-3">
                     <input class="form-control" type="text" name="nama_konsumen" id="nama_konsumen" value="{{ request('nama_konsumen') }}" placeholder="Cari Berdasarkan Nama Konsumen" />
                 </div>
+                <div class="col-md-2">
+                    <select name="marketing_id" class="form-control">
+                        <option value="">-- Filter Nama Marketing --</option>
+                        @foreach($marketing as $item)
+                        <option value="{{ $item->id }}" {{ request('marketing_id') == $item->id ? 'selected' : '' }}>
+                            {{ $item->nama_marketing }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select name="status_pernikahan" class="form-control">
+                        <option value="">-- Filter Status Pernikahan --</option>
+                        <option value="Menikah" {{ request('status_pernikahan') == 'Menikah' ? 'selected' : '' }}>Menikah</option>
+                        <option value="Cerai Hidup" {{ request('status_pernikahan') == 'Cerai Hidup' ? 'selected' : '' }}>Cerai Hidup</option>
+                        <option value="Cerai Mati" {{ request('status_pernikahan') == 'Cerai Mati' ? 'selected' : '' }}>Cerai Mati</option>
+                        <option value="Belum Menikah" {{ request('status_pernikahan') == 'Belum Menikah' ? 'selected' : '' }}>Belum Menikah</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <input class="form-control" type="number" name="gaji" id="gaji" value="{{ request('gaji') }}" placeholder="Cari Berdasarkan Gaji" />
+                </div>
                 <div class="col-md-3">
                     <button type="submit" class="btn btn-primary">Filter</button>
                     <a href="{{ route('konsumen.index') }}" class="btn btn-secondary">Reset</a>
@@ -46,7 +68,7 @@
                 <tbody>
                     @forelse($konsumen as $item)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $loop->iteration  + ($konsumen->currentPage() - 1) * $konsumen->perPage() }}</td>
                             <td>{{ $item->nik_konsumen }}</td>
                             <td>{{ $item->nama_konsumen }}</td>
                             <td>{{ $item->no_telp_konsumen }}</td>

@@ -29,7 +29,7 @@
                 <tbody>
                     @forelse($transaksi as $item)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $loop->iteration  + ($transaksi->currentPage() - 1) * $transaksi->perPage() }}</td>
                             <td>{{ $item->jenis_transaksi ?? '-' }}</td>
                             <td>{{ \Carbon\Carbon::parse($item->tanggal_transaksi)->format('d-m-Y') }}</td>
                             <td>Rp{{ number_format($item->jumlah_pembayaran ?? '-', 0 ,',' ,'.' ) }}</td>
@@ -57,6 +57,16 @@
                     @endforelse
                 </tbody>
             </table>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <div>
+                <p class="mb-0">
+                    Menampilkan {{ $transaksi->firstItem() }} sampai {{ $transaksi->lastItem() }} dari total {{ $transaksi->total() }} data.
+                </p>
+            </div>
+            <div>
+                {{ $transaksi->appends(request()->query())->links('pagination::bootstrap-4') }}
+            </div>
         </div>
     </x-adminlte-card>
 @endsection

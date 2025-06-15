@@ -15,7 +15,7 @@ class NotarisController extends Controller
      */
     public function index()
     {
-        $notaris = Notaris::all();
+        $notaris = Notaris::paginate(10);
         return view('notaris.index', compact('notaris'));
     }
 

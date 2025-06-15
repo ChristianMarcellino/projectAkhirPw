@@ -28,7 +28,7 @@
                 <tbody>
                     @forelse($bank as $item)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $loop->iteration  + ($bank->currentPage() - 1) * $bank->perPage() }}</td>
                             <td>{{ $item->nama_bank }}</td>
                             <td>{{ $item->alamat_bank }}</td>
                             <td>{{ $item->no_telp_bank }}</td>
@@ -55,6 +55,16 @@
                     @endforelse
                 </tbody>
             </table>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <div>
+                <p class="mb-0">
+                    Menampilkan {{ $bank->firstItem() }} sampai {{ $bank->lastItem() }} dari total {{ $bank->total() }} data.
+                </p>
+            </div>
+            <div>
+                {{ $bank->appends(request()->query())->links('pagination::bootstrap-4') }}
+            </div>
         </div>
     </x-adminlte-card>
 @endsection

@@ -18,7 +18,7 @@ class PengirimanBerkasController extends Controller
     public function index()
     {
         //
-        $pengirimanberkas = PengirimanBerkas::all();
+        $pengirimanberkas = PengirimanBerkas::paginate(10);
         $konsumen = Konsumen::all();
         $bank = Bank::all();
         $marketing = Marketing::all();

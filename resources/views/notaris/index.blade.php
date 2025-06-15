@@ -28,7 +28,7 @@
                 <tbody>
                     @forelse($notaris as $item)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $loop->iteration  + ($notaris->currentPage() - 1) * $notaris->perPage() }}</td>
                             <td>{{ $item->nik_notaris }}</td>
                             <td>{{ $item->nama_notaris }}</td>
                             <td>{{ $item->alamat_notaris }}</tdf>
@@ -55,6 +55,16 @@
                     @endforelse
                 </tbody>
             </table>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <div>
+                <p class="mb-0">
+                    Menampilkan {{ $notaris->firstItem() }} sampai {{ $notaris->lastItem() }} dari total {{ $notaris->total() }} data.
+                </p>
+            </div>
+            <div>
+                {{ $notaris->appends(request()->query())->links('pagination::bootstrap-4') }}
+            </div>
         </div>
     </x-adminlte-card>
 @endsection

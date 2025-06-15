@@ -14,7 +14,7 @@ class ProyekController extends Controller
      */
     public function index()
     {
-        $proyek = Proyek::all();
+        $proyek = Proyek::paginate(10);
         return view('proyek.index')->with('proyek',$proyek);
     }
 

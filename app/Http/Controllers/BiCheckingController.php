@@ -16,7 +16,7 @@ class BiCheckingController extends Controller
      */
     public function index()
     {
-        $biChecking = BiChecking::all();
+        $biChecking = BiChecking::paginate(10);
         return view('bi_checking.index', compact('biChecking'));
     }
 

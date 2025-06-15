@@ -27,7 +27,7 @@ class RumahController extends Controller
             $query->where('blok_rumah', 'LIKE', '%' . $request->blok_rumah .     '%');
         }
 
-        $rumah= $query->get();
+        $rumah= $query->paginate(10);
         $proyek = Proyek::all();
         return view ('rumah.index', compact('proyek','rumah'));
     }

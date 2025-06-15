@@ -28,7 +28,7 @@
                 <tbody>
                     @forelse($biChecking as $item)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $loop->iteration  + ($biChecking->currentPage() - 1) * $biChecking->perPage() }}</td>
                             <td>{{ $item->id_checking }}</td>
                             <td>{{ $item->konsumen->nama_konsumen ?? '-'}}</td>
                             <td>{{ $item->hasil_checking }}</td>
@@ -55,6 +55,16 @@
                     @endforelse
                 </tbody>
             </table>
+    </div>
+    <div class="d-flex justify-content-between align-items-center mt-3">
+        <div>
+            <p class="mb-0">
+                Menampilkan {{ $biChecking->firstItem() }} sampai {{ $biChecking->lastItem() }} dari total {{ $biChecking->total() }} data.
+            </p>
+        </div>
+        <div>
+            {{ $biChecking->appends(request()->query())->links('pagination::bootstrap-4') }}
+        </div>
     </div>
     </x-adminlte-card>
 @endsection

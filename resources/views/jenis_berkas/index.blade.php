@@ -25,7 +25,7 @@
                 <tbody>
                     @forelse($jenisBerkas as $item)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $loop->iteration  + ($jenisBerkas->currentPage() - 1) * $jenisBerkas->perPage() }}</td>
                             <td>{{ $item->jenis_Berkas }}</td>
                             @can ('admin-only')
                             <td>
@@ -49,6 +49,16 @@
                     @endforelse
                 </tbody>
             </table>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <div>
+                <p class="mb-0">
+                    Menampilkan {{ $jenisBerkas->firstItem() }} sampai {{ $jenisBerkas->lastItem() }} dari total {{ $jenisBerkas->total() }} data.
+                </p>
+            </div>
+            <div>
+                {{ $jenisBerkas->appends(request()->query())->links('pagination::bootstrap-4') }}
+            </div>
         </div>
     </x-adminlte-card>
 @endsection

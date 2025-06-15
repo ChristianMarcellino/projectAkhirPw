@@ -34,7 +34,6 @@
                         <option value="{{ $item->id }}" {{ request('proyek_id') == $item->id ? 'selected' : '' }}>
                             {{ $item->nama_proyek }}
                         </option>
-                        
                         @endforeach
                     </select>
                 </div>
@@ -67,7 +66,7 @@
                 <tbody>
                     @forelse($rumah as $item)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $loop->iteration  + ($rumah->currentPage() - 1) * $rumah->perPage() }}</td>
                             <td>{{ $item->no_shm_rumah }}</td>
                             <td>{{ $item->blok_rumah }}</td>
                             <td>Rp{{ number_format($item->harga_dp, 0, ',', '.') }}</td>
@@ -97,6 +96,16 @@
                     @endforelse
                 </tbody>
             </table>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <div>
+                <p class="mb-0">
+                    Menampilkan {{ $rumah->firstItem() }} sampai {{ $rumah->lastItem() }} dari total {{ $rumah->total() }} data.
+                </p>
+            </div>
+            <div>
+                {{ $rumah->appends(request()->query())->links('pagination::bootstrap-4') }}
+            </div>
         </div>
     </x-adminlte-card>
 </div>

@@ -28,7 +28,7 @@
                 <tbody>
                     @forelse($marketing as $item)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $loop->iteration  + ($marketing->currentPage() - 1) * $marketing->perPage() }}</td>
                             <td>{{ $item->nik_marketing }}</td>
                             <td>{{ $item->nama_marketing }}</td>
                             <td>{{ $item->no_telp_marketing }}</td>
@@ -55,6 +55,16 @@
                     @endforelse
                 </tbody>
             </table>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <div>
+                <p class="mb-0">
+                    Menampilkan {{ $marketing->firstItem() }} sampai {{ $marketing->lastItem() }} dari total {{ $marketing->total() }} data.
+                </p>
+            </div>
+            <div>
+                {{ $marketing->appends(request()->query())->links('pagination::bootstrap-4') }}
+            </div>
         </div>
     </x-adminlte-card>
 @endsection
