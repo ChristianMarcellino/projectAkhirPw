@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaksi;
 use App\Models\Konsumen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class TransaksiController extends Controller
 {
@@ -27,7 +28,7 @@ class TransaksiController extends Controller
         $request->validate([
             'jenis_transaksi' => 'required|string|max:60',
             'tanggal_transaksi' => 'required|date',
-            'jumlah_pembayaran' => 'required|integer|min:0',
+            'jumlah_pembayaran' => 'required|integer|min:0|max:2000000000',
             'jenis_pembayaran' => 'required|in:tunai,transfer',
             'id_konsumen' => 'required|exists:konsumen,id',
         ]);
@@ -45,6 +46,7 @@ class TransaksiController extends Controller
 
     public function edit(Transaksi $transaksi)
     {
+        Gate::authorize('admin-only');
         $konsumen = Konsumen::all();
         return view('transaksi.edit', compact('transaksi', 'konsumen'));
     }
@@ -52,10 +54,11 @@ class TransaksiController extends Controller
 
     public function update(Request $request, Transaksi $transaksi)
     {
+        Gate::authorize('admin-only');
         $request->validate([
             'jenis_transaksi' => 'required|string|max:60',
             'tanggal_transaksi' => 'required|date',
-            'jumlah_pembayaran' => 'required|integer|min:0',
+            'jumlah_pembayaran' => 'required|integer|min:0|max:2000000000',
             'jenis_pembayaran' => 'required|in:tunai,transfer',
             'id_konsumen' => 'required|exists:konsumen,id',
         ]);
@@ -68,7 +71,12 @@ class TransaksiController extends Controller
 
     public function destroy(Transaksi $transaksi)
     {
-        $transaksi->delete();
-        return redirect()->route('transaksi.index')->with('success', 'Data Transaksi berhasil dihapus.');
+        Gate::authorize('admin-only');
+        try {
+            $transaksi->delete();
+            return redirect()->route('transaksi.index')->with('success', 'Data Transaksi Berhasil Dihapus');
+        }catch (\Exception $e) {
+            return redirect()->route('transaksi.index')->with('error', 'Gagal menghapus Data Transaksi.');
+        }
     }
 }

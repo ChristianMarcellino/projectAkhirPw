@@ -82,7 +82,11 @@ class MarketingController extends Controller
     public function destroy(Marketing $marketing)
     {
         Gate::authorize('admin-only');
-        $marketing->delete();
-        return redirect()->route('marketing.index')->with('success', 'Data Marketing Berhasil Dihapus');
+        try {
+            $marketing->delete();
+            return redirect()->route('marketing.index')->with('success', 'Data Marketing Berhasil Dihapus');
+        }catch (\Exception $e) {
+            return redirect()->route('marketing.index')->with('error', 'Gagal menghapus Data Marketing.');
+        }
     }
 }

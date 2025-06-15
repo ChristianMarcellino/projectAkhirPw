@@ -7,6 +7,7 @@ use App\Models\Notaris;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Gate;
 
 class BankController extends Controller
 {
@@ -85,7 +86,11 @@ class BankController extends Controller
     public function destroy(Bank $bank)
     {
         Gate::authorize('admin-only');
-        $bank->delete();
-        return redirect()->route('bank.index')->with('success', 'Data Bank Berhasil Dihapus');
+        try {
+            $bank->delete();
+            return redirect()->route('bank.index')->with('success', 'Data Bank Berhasil Dihapus');
+        }catch (\Exception $e) {
+            return redirect()->route('bank.index')->with('error', 'Gagal menghapus Data Bank.');
+        }
     }
 }

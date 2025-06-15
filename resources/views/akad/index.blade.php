@@ -11,47 +11,49 @@
         onclick="window.location='{{ route('akad.create') }}'" />
 
     <x-adminlte-card title="Daftar Akad" theme="info" icon="fas fa-list">
-        <table class="table table-bordered table-hover table-striped">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama Konsumen</th>
-                    <th>Tanggal Akad</th>
-                    <th>Tempat Akad</th>
-                    @can ('admin-only')
-                    <th>Aksi</th>
-                    @endcan
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($akad as $item)
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped w-100">
+                <thead>
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->konsumen->nama_konsumen ?? '-' }}</td>
-                        <td>{{ $item->tanggal_akad }}</td>
-                        <td>{{ $item->tempat_akad }}</td>
+                        <th>No</th>
+                        <th>Nama Konsumen</th>
+                        <th>Tanggal Akad</th>
+                        <th>Tempat Akad</th>
                         @can ('admin-only')
-                        <td>
-                            <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm"
-                                title="Edit"
-                                onclick="window.location='{{ route('akad.edit', $item->id) }}'" />
-
-                            <form action="{{ route('akad.destroy', $item->id) }}" method="POST"
-                                style="display:inline-block">
-                                @csrf
-                                @method('DELETE')
-                                <x-adminlte-button class="show_confirm" data-nama="Akad {{$item->konsumen->nama_konsumen}}" theme="danger" icon="fas fa-trash" size="sm" title="Hapus" type="submit" />
-                            </form>
-                        </td>
+                        <th>Aksi</th>
                         @endcan
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="9" class="text-center">Tidak ada data akad.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @forelse($akad as $item)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->konsumen->nama_konsumen ?? '-' }}</td>
+                            <td>{{ $item->tanggal_akad }}</td>
+                            <td>{{ $item->tempat_akad }}</td>
+                            @can ('admin-only')
+                            <td>
+                                <div class="d-flex align-items-center" style="gap:6px">
+                                    <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm" title="Edit"
+                                        class="rounded" onclick="window.location='{{ route('akad.edit', $item->id) }}'" />
+                                    
+                                    <form action="{{ route('akad.destroy', $item->id) }}" method="POST" class="d-inline">
+                                        @csrf @method('DELETE')
+                                        <x-adminlte-button class="show_confirm rounded" data-nama="Akad {{ $item->konsumen->nama_konsumen }}"
+                                            theme="danger" icon="fas fa-trash" size="sm" title="Hapus" type="submit" />
+                                    </form>
+                                </div>
+                            </td>
+                            @endcan
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="9" class="text-center">Tidak ada data akad.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </x-adminlte-card>
 @endsection
 

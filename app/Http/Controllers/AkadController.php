@@ -80,10 +80,14 @@ class AkadController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Akad $akad)
-    {
+    public function destroy(Akad $akad){
         Gate::authorize('admin-only');
-        $akad->delete();
-        return redirect()->route('akad.index')->with('success', 'Data Akad Berhasil Dihapus');
+
+        try {
+            $akad->delete();
+            return redirect()->route('akad.index')->with('success', 'Data Akad Berhasil Dihapus');
+        }catch (\Exception $e) {
+            return redirect()->route('akad.index')->with('error', 'Gagal menghapus Data Akad.');
+        }
     }
 }

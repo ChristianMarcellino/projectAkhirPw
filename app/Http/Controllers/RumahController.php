@@ -24,7 +24,7 @@ class RumahController extends Controller
         $query->where('proyek_id', $request->proyek_id);
         }
         if($request->filled('blok_rumah')){
-            $query->where('blok_rumah', 'LIKE', '%' . $request->blok_rumah . '%');
+            $query->where('blok_rumah', 'LIKE', '%' . $request->blok_rumah .     '%');
         }
 
         $rumah= $query->get();
@@ -54,7 +54,7 @@ class RumahController extends Controller
             Rule::unique('rumah')
                 ->where(fn ($query) => $query->where('proyek_id', $request->proyek_id))
             ],
-            'harga_dp'         => 'required',
+            'harga_dp'         => 'required|max:2000000000',
             'luas_tanah_rumah'  => 'required',
             'status_penjualan'     => 'required|in:Tersedia,Booking,Terjual',
             'proyek_id'        => 'required|exists:proyek,id',
@@ -93,7 +93,7 @@ class RumahController extends Controller
             'blok_rumah'       =>['required','max:5',
             Rule::unique('rumah')
                 ->where(fn ($query) => $query->where('proyek_id', $request->proyek_id))->ignore($rumah->id)],
-            'harga_dp'         => 'required',
+            'harga_dp'         => 'required|max:2000000000',
             'luas_tanah_rumah'  => 'required',
             'status_penjualan'  => 'required|in:Tersedia,Booking,Terjual',
             'proyek_id' => 'required|exists:proyek,id',
@@ -109,7 +109,11 @@ class RumahController extends Controller
     public function destroy(Rumah $rumah)
     {
         Gate::authorize('admin-only');
-        $rumah-> delete();
-        return redirect()->route('rumah.index')->with('success','Data Rumah Berhasil Dihapus');
+        try {
+            $rumah->delete();
+            return redirect()->route('rumah.index')->with('success', 'Data Rumah Berhasil Dihapus');
+        }catch (\Exception $e) {
+            return redirect()->route('rumah.index')->with('error', 'Gagal menghapus Data Rumah.');
+        }
     }
 }

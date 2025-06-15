@@ -6,6 +6,7 @@ use App\Models\BerkasKonsumen;
 use App\Models\JenisBerkas;
 use App\Models\Konsumen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class BerkasKonsumenController extends Controller
 {
@@ -87,7 +88,11 @@ class BerkasKonsumenController extends Controller
     public function destroy(BerkasKonsumen $berkasKonsumen)
     {
         Gate::authorize('admin-only');
-        $berkasKonsumen->delete();
-        return redirect()->route('berkas_konsumen.index')->with('success', 'Data Berkas Konsumen Berhasil Dihapus');
+        try {
+            $berkasKonsumen->delete();
+            return redirect()->route('berkas_konsumen.index')->with('success', 'Data Berkas Konsumen Berhasil Dihapus');
+        }catch (\Exception $e) {
+            return redirect()->route('berkas_konsumen.index')->with('error', 'Gagal menghapus Data Berkas Konsumen.');
+        }
     }
 }

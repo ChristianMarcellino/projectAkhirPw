@@ -14,7 +14,11 @@ class KonsumenController extends Controller
 {
     public function index(Request $request)
     {
-        $konsumen = Konsumen::all();
+        $query = Konsumen::query();
+        if($request->filled('nama_konsumen')){
+            $query->where('nama_konsumen', 'LIKE', '%' . $request->nama_konsumen . '%');
+        }
+        $konsumen = $query->paginate(1);
         return view('konsumen.index', compact('konsumen'));
     }
     /**
@@ -38,7 +42,7 @@ class KonsumenController extends Controller
             'nama_konsumen' => 'max:60|required',
             'no_telp_konsumen' => ['required', 'max:13', 'regex:/^(08|07)[0-9]{8,11}$/'],
             'alamat_konsumen' => 'max:100|required',
-            'gaji' => 'required|integer|min:0',
+            'gaji' => 'required|integer|min:0|max:2000000000',
             'status_pernikahan' => 'required|in:Menikah,Cerai Hidup,Cerai Mati,Belum Menikah',
             'rumah_id' => 'required|exists:rumah,id',
             'bank_id' => 'required|max:60|exists:bank,id',
@@ -80,7 +84,7 @@ class KonsumenController extends Controller
             'nama_konsumen' => 'max:60|required',
             'no_telp_konsumen' => ['required', 'max:13', 'regex:/^(08|07)[0-9]{8,11}$/'],
             'alamat_konsumen' => 'max:100|required',
-            'gaji' => 'required|integer|min:0',
+            'gaji' => 'required|integer|min:0|max:2000000000',
             'status_pernikahan' => 'required|in:Menikah,Cerai Hidup,Cerai Mati,Belum Menikah',
             'rumah_id' => 'required|exists:rumah,id',
             'bank_id' => 'required|max:60|exists:bank,id',
@@ -96,7 +100,11 @@ class KonsumenController extends Controller
     public function destroy(Konsumen $konsumen)
     {
         Gate::authorize('admin-only');
-        $konsumen->delete();
-        return redirect()->route('konsumen.index')->with('success', 'Data Konsumen Berhasil Dihapus');
+        try {
+            $konsumen->delete();
+            return redirect()->route('konsumen.index')->with('success', 'Data Konsumen Berhasil Dihapus');
+        }catch (\Exception $e) {
+            return redirect()->route('konsumen.index')->with('error', 'Gagal menghapus Data Konsumen.');
+        }
     }
 }

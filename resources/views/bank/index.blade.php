@@ -11,49 +11,51 @@
         onclick="window.location='{{ route('bank.create') }}'" />
 
     <x-adminlte-card title="Daftar Bank" theme="info" icon="fas fa-list">
-        <table class="table table-bordered table-hover table-striped">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama Bank</th>
-                    <th>Alamat bank</th>
-                    <th>No Telepon bank</th>
-                    <th>Nama Notaris</th>
-                    @can ('admin-only')
-                    <th>Aksi</th>
-                    @endcan
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($bank as $item)
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped w-100">
+                <thead>
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->nama_bank }}</td>
-                        <td>{{ $item->alamat_bank }}</td>
-                        <td>{{ $item->no_telp_bank }}</td>
-                        <td>{{ $item->notaris->nama_notaris ?? '-'}}</td>
+                        <th>No</th>
+                        <th>Nama Bank</th>
+                        <th>Alamat bank</th>
+                        <th>No Telepon bank</th>
+                        <th>Nama Notaris</th>
                         @can ('admin-only')
-                        <td>
-                            <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm"
-                                title="Edit"
-                                onclick="window.location='{{ route('bank.edit', $item->id) }}'" />
-
-                            <form action="{{ route('bank.destroy', $item->id) }}" method="POST"
-                                style="display:inline-block">
-                                @csrf
-                                @method('DELETE')
-                                <x-adminlte-button class="show_confirm" data-nama="{{$item->nama_bank}}" theme="danger" icon="fas fa-trash" size="sm" title="Hapus" type="submit" />
-                            </form>
-                        </td>
+                        <th>Aksi</th>
                         @endcan
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="9" class="text-center">Tidak ada data bank.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @forelse($bank as $item)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->nama_bank }}</td>
+                            <td>{{ $item->alamat_bank }}</td>
+                            <td>{{ $item->no_telp_bank }}</td>
+                            <td>{{ $item->notaris->nama_notaris ?? '-'}}</td>
+                            @can ('admin-only')
+                            <td>
+                                <div class="d-flex align-items-center" style="gap:6px">
+                                    <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm" title="Edit"
+                                        class="rounded" onclick="window.location='{{ route('bank.edit', $item->id) }}'" />
+                                    
+                                    <form action="{{ route('bank.destroy', $item->id) }}" method="POST" class="d-inline">
+                                        @csrf @method('DELETE')
+                                        <x-adminlte-button class="show_confirm rounded" data-nama="Bank {{ $item->nama_bank }}"
+                                            theme="danger" icon="fas fa-trash" size="sm" title="Hapus" type="submit" />
+                                    </form>
+                                </div>
+                            </td>
+                            @endcan
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="9" class="text-center">Tidak ada data bank.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </x-adminlte-card>
 @endsection
 

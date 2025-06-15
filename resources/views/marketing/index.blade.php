@@ -11,49 +11,51 @@
         onclick="window.location='{{ route('marketing.create') }}'" />
 
     <x-adminlte-card title="Daftar Marketing" theme="info" icon="fas fa-list">
-        <table class="table table-bordered table-hover table-striped">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>NIK Marketing</th>
-                    <th>Nama Marketing</th>
-                    <th>Nomor Telepon</th>
-                    <th>Tanggal Masuk</th>
-                    @can ('admin-only')
-                    <th>Aksi</th>
-                    @endcan
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($marketing as $item)
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped w-100">
+                <thead>
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->nik_marketing }}</td>
-                        <td>{{ $item->nama_marketing }}</td>
-                        <td>{{ $item->no_telp_marketing }}</td>
-                        <td>{{ $item->tanggal_masuk }}</tdf>
+                        <th>No</th>
+                        <th>NIK Marketing</th>
+                        <th>Nama Marketing</th>
+                        <th>Nomor Telepon</th>
+                        <th>Tanggal Masuk</th>
                         @can ('admin-only')
-                        <td>
-                            <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm"
-                                title="Edit"
-                                onclick="window.location='{{ route('marketing.edit', $item->id) }}'" />
-
-                            <form action="{{ route('marketing.destroy', $item->id) }}" method="POST"
-                                style="display:inline-block">
-                                @csrf
-                                @method('DELETE')
-                                <x-adminlte-button class="show_confirm" data-nama="{{$item->nama_marketing}}" theme="danger" icon="fas fa-trash" size="sm" title="Hapus" type="submit" />
-                            </form>
-                        </td>
+                        <th>Aksi</th>
                         @endcan
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="9" class="text-center">Tidak ada data marketing.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @forelse($marketing as $item)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->nik_marketing }}</td>
+                            <td>{{ $item->nama_marketing }}</td>
+                            <td>{{ $item->no_telp_marketing }}</td>
+                            <td>{{ $item->tanggal_masuk }}</tdf>
+                            @can ('admin-only')
+                            <td>
+                                <div class="d-flex align-items-center" style="gap:6px">
+                                    <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm" title="Edit"
+                                        class="rounded" onclick="window.location='{{ route('marketing.edit', $item->id) }}'" />
+                                    
+                                    <form action="{{ route('marketing.destroy', $item->id) }}" method="POST" class="d-inline">
+                                        @csrf @method('DELETE')
+                                        <x-adminlte-button class="show_confirm rounded" data-nama="Marketing {{ $item->nama_marketing }}"
+                                            theme="danger" icon="fas fa-trash" size="sm" title="Hapus" type="submit" />
+                                    </form>
+                                </div>
+                            </td>
+                            @endcan
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="9" class="text-center">Tidak ada data marketing.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </x-adminlte-card>
 @endsection
 

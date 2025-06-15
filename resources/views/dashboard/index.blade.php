@@ -79,11 +79,11 @@ Highcharts.chart('containerRumahTersedia', {
         type: 'column'
     },
     title: {
-        text: 'Jumlah Rumah yang Tersedia'
+        text: 'Jumlah Rumah yang Tersedia per Proyek'
     },
     subtitle: {
         text:
-            'Source: Trust me bro'
+            'Source: Laporan Bulanan'
     },
     xAxis: {
         categories: [@foreach ($rumahTersedia as $item)
@@ -97,11 +97,11 @@ Highcharts.chart('containerRumahTersedia', {
     yAxis: {
         min: 0,
         title: {
-            text: 'Rumah'
+            text: ' Rumah'
         }
     },
     tooltip: {
-        valueSuffix: 'Rumah'
+        valueSuffix: ' Rumah'
     },
     plotOptions: {
         column: {

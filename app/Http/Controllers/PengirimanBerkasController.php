@@ -99,7 +99,11 @@ class PengirimanBerkasController extends Controller
     public function destroy(PengirimanBerkas $pengirimanberkas)
     {
         Gate::authorize('admin-only');
-        $pengirimanberkas->delete();
-        return redirect()->route('pengirimanberkas.index')->with('success', 'Data Pengiriman Berkas Berhasil Dihapus');
+        try {
+            $pengirimanberkas->delete();
+            return redirect()->route('pengirimanberkas.index')->with('success', 'Data Pengiriman Berkas Berhasil Dihapus');
+        }catch (\Exception $e) {
+            return redirect()->route('pengirimanberkas.index')->with('error', 'Gagal menghapus Data Pengiriman Berkas.');
+        }
     }
 }

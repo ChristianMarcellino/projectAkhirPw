@@ -1,0 +1,12 @@
+.nav-sidebar .nav-link {
+    display: grid;
+    grid-template-columns: 20px auto;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.nav-sidebar .nav-icon {
+    width: 20px;
+    text-align: center;
+    font-size: 1rem;
+}

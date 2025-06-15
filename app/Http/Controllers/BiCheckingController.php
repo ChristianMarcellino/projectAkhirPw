@@ -6,6 +6,7 @@ use App\Models\BiChecking;
 use App\Models\Konsumen;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 
 class BiCheckingController extends Controller
@@ -83,7 +84,11 @@ class BiCheckingController extends Controller
     public function destroy(BiChecking $biChecking)
     {
         Gate::authorize('admin-only');
-        $biChecking->delete();
-        return redirect()->route('bi_checking.index')->with('success', 'Data Bi Checking Berhasil Dihapus');
+        try {
+            $biChecking->delete();
+            return redirect()->route('bi_checking.index')->with('success', 'Data BI Checking Berhasil Dihapus');
+        }catch (\Exception $e) {
+            return redirect()->route('bi_checking.index')->with('error', 'Gagal menghapus Data BI Checking.');
+        }
     }
 }

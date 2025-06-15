@@ -35,9 +35,9 @@ class ProyekController extends Controller
             'no_pbg' => 'required|unique:proyek|max:19',
             'nama_proyek' => 'required|unique:proyek',
             'jumlah_unit' => 'required',
-            'harga_rumah' => 'required',
+            'harga_rumah' => 'required||max:2000000000',
             'luas_tanah' => 'required',
-            'harga_kelebihan_tanah' => 'required',
+            'harga_kelebihan_tanah' => 'required||max:2000000000',
             'alamat' => 'required'
         ]);
 
@@ -73,9 +73,9 @@ class ProyekController extends Controller
             'no_pbg' => ['required',Rule::unique('proyek','no_pbg')->ignore($proyek->id),'max:19'],
             'nama_proyek' => ['required',Rule::unique('proyek','nama_proyek')->ignore($proyek->id)],
             'jumlah_unit' => 'required',
-            'harga_rumah' => 'required',
+            'harga_rumah' => 'required||max:2000000000',
             'luas_tanah' => 'required',
-            'harga_kelebihan_tanah' => 'required',
+            'harga_kelebihan_tanah' => 'required||max:2000000000',
             'alamat' => 'required'
         ]);
 
@@ -86,10 +86,14 @@ class ProyekController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Proyek $proyek)
-    {
+    public function destroy(Proyek $proyek){
         Gate::authorize('admin-only');
-        $proyek->delete();
-        return redirect()->route('proyek.index')->with('success', 'Data Proyek Berhasil Dihapus');
+
+        try {
+            $proyek->delete();
+            return redirect()->route('proyek.index')->with('success', 'Data Proyek Berhasil Dihapus');
+        }catch (\Exception $e) {
+            return redirect()->route('proyek.index')->with('error', 'Gagal menghapus Data Proyek.');
+        }
     }
 }

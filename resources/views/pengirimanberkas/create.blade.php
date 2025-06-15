@@ -11,7 +11,6 @@
     <div class="card-body">
         <form action="{{ route('pengirimanberkas.store') }}" method="POST">
             @csrf
-
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -58,7 +57,8 @@
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
-
+                </div>
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="tanggal_kirim">Tanggal Kirim</label>
                         <input type="date" name="tanggal_kirim" class="form-control @error('tanggal_kirim') is-invalid @enderror" value="{{ old('tanggal_kirim') }}">

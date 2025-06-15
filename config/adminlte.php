@@ -63,8 +63,8 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>Kolin</b> Femboy',
+    'logo_img' => 'vendor/adminlte/dist/img/nazi.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -152,11 +152,11 @@ return [
     |
     */
 
-    'layout_topnav' => null,
+    'layout_topnav' => false,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
-    'layout_fixed_footer' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
+    'layout_fixed_footer' => true,
     'layout_dark_mode' => null,
 
     /*
@@ -313,66 +313,65 @@ return [
         ],
         ['header' => 'Navigate'],
         [
-            'text' => 'Proyek',
-            'url' => 'proyek',
-            'icon' => 'far fa-fw fa-file',
-        ],
-        [
-            'text' => 'Rumah',
-            'url' => 'rumah',
-            'icon' => 'far fa-fw fa-file',
-        ],
-        [
-            'text' => 'Marketing',
-            'url' => 'marketing',
-            'icon' => 'far fa-fw fa-file',
-        ],
-         [
-            'text' => 'Notaris',
-            'url' => 'notaris',
-            'icon' => 'far fa-fw fa-file',
-        ],
-        [
-            'text' => 'Bank',
-            'url' => 'bank',
-            'icon' => 'far fa-fw fa-file',
-        ],
-        [
-            'text' => 'Konsumen',
-            'url' => 'konsumen',
-            'icon' => 'far fa-fw fa-file',
-        ],
-        [
-            'text' => 'Bi Checking',
-            'url' => 'bi_checking',
-            'icon' => 'far fa-fw fa-file',
-        ],
-         [
-            'text' => 'Akad',
-            'url' => 'akad',
-            'icon' => 'far fa-fw fa-file',
-        ],
-         [
-            'text' => 'Jenis Berkas',
-            'url' => 'jenis_berkas',
-            'icon' => 'far fa-fw fa-file',
-        ],
-         [
-            'text' => 'Berkas Konsumen',
-            'url' => 'berkas_konsumen',
-            'icon' => 'far fa-fw fa-file',
-        ],
-
-        [
-            'text' => 'Pengiriman Berkas',
-            'url' => 'pengirimanberkas',
-            'icon' => 'far fa-fw fa-file',
-        ],
-        [
-            'text' => 'Transaksi',
-            'url' => 'transaksi',
-            'icon' => 'far fa-fw fa-file',
-        ],
+        'text' => 'Proyek',
+        'url' => 'proyek',
+        'icon' => 'fas fa-building',
+    ],
+    [
+        'text' => 'Rumah',
+        'url' => 'rumah',
+        'icon' => 'fas fa-home',
+    ],
+    [
+        'text' => 'Marketing',
+        'url' => 'marketing',
+        'icon' => 'fas fa-bullhorn',
+    ],
+    [
+        'text' => 'Notaris',
+        'url' => 'notaris',
+        'icon' => 'fas fa-file-signature',
+    ],
+    [
+        'text' => 'Bank',
+        'url' => 'bank',
+        'icon' => 'fas fa-university',
+    ],
+    [
+        'text' => 'Konsumen',
+        'url' => 'konsumen',
+        'icon' => 'fas fa-user',
+    ],
+    [
+        'text' => 'Bi Checking',
+        'url' => 'bi_checking',
+        'icon' => 'fas fa-search',
+    ],
+    [
+        'text' => 'Akad',
+        'url' => 'akad',
+        'icon' => 'fas fa-handshake',
+    ],
+    [
+        'text' => 'Jenis Berkas',
+        'url' => 'jenis_berkas',
+        'icon' => 'fas fa-folder',
+    ],
+    [
+        'text' => 'Berkas Konsumen',
+        'url' => 'berkas_konsumen',
+        'icon' => 'fas fa-file-alt',
+    ],
+    [
+        'text' => 'Pengiriman Berkas',
+        'url' => 'pengirimanberkas',
+        'icon' => 'fas fa-paper-plane',
+    ],
+    [
+        'text' => 'Transaksi',
+        'url' => 'transaksi',
+        'icon' => 'fas fa-money-bill-wave',
+    ]
     ],
 
     /*
@@ -408,6 +407,11 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Plugins-Configuration
     |
     */
+
+    'custom_css' => [
+        'css/sidebar_align.css',
+    ],
+    
 
     'plugins' => [
         'Datatables' => [

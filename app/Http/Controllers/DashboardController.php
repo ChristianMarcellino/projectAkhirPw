@@ -12,6 +12,12 @@ class DashboardController extends Controller
         where status_penjualan = "Tersedia" 
         group by nama_proyek;');
 
-        return view('dashboard.index', compact('rumahTersedia'));
+        $detailAkad = DB::select('select tanggal_akad,tempat_akad,nama_konsumen,nama_proyek,blok_rumah from akad
+        join konsumen on akad.konsumen_id = konsumen.nik_konsumen
+        join rumah on konsumen.rumah_id = rumah.no_shm_rumah
+        join proyek on rumah.proyek_id = proyek.no_pbg
+        where tanggal_akad > now()');
+
+        return view('dashboard.index', compact('rumahTersedia','detailAkad'));
     }
 }

@@ -76,7 +76,11 @@ class JenisBerkasController extends Controller
     public function destroy(JenisBerkas $jenisBerkas)
     {
         Gate::authorize('admin-only');
-        $jenisBerkas->delete();
-        return redirect()->route('jenis_berkas.index')->with('success', 'Data Jenis Berkas Berhasil Dihapus');
+        try {
+            $jenisBerkas->delete();
+            return redirect()->route('jenis_berkas.index')->with('success', 'Data Jenis Berkas Berhasil Dihapus');
+        }catch (\Exception $e) {
+            return redirect()->route('jenis_berkas.index')->with('error', 'Gagal menghapus Data Jenis Berkas.');
+        }
     }
 }

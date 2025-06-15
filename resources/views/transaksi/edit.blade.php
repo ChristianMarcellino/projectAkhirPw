@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <label for="jumlah_pembayaran">Jumlah Pembayaran</label>
                             <input type="number" name="jumlah_pembayaran" class="form-control @error('jumlah_pembayaran') is-invalid @enderror"
-                                value="{{ old('jumlah_pembayaran', $transaksi->jumlah_pembayaran) }}" min="0">
+                                value="{{ old('jumlah_pembayaran', $transaksi->jumlah_pembayaran) }}" min="0" maxlength="10">
                             @error('jumlah_pembayaran')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror

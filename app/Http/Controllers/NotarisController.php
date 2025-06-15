@@ -84,7 +84,11 @@ class NotarisController extends Controller
     public function destroy(Notaris $notaris)
     {
         Gate::authorize('admin-only');
-        $notaris->delete();
-        return redirect()->route('notaris.index')->with('success', 'Data Notaris Berhasil Dihapus');
+        try {
+            $notaris->delete();
+            return redirect()->route('notaris.index')->with('success', 'Data Notaris Berhasil Dihapus');
+        }catch (\Exception $e) {
+            return redirect()->route('notaris.index')->with('error', 'Gagal menghapus Data Notaris.');
+        }
     }
 }
