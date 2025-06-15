@@ -1,0 +1,9 @@
+/node_modules
+/tests
+/resources/sass
+/resources/js
+/public/storage
+*.log
+*.cache
+*.md
+.env
