@@ -9,17 +9,17 @@
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
 <div class="row">
-    <div class="col-6">
+    <div class="col-md-4 col-sm-6">
         <figure class="highcharts-figure">
             <div id="containerRumahTersedia"></div>
         </figure>
     </div>
-    <div class="col-6">
+    <div class="col-md-4 col-sm-6">
         <figure class="highcharts-figure">
             <div id="containerDetailChecking"></div>
         </figure>
     </div>
-    <div class="col-6">
+    <div class="col-md-4 col-sm-6">
         <figure class="highcharts-figure">
             <div id="konsumenKeBank"></div>
         </figure>

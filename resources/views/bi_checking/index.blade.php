@@ -38,10 +38,10 @@
                             <div class="d-flex align-items-center" style="gap:6px">
                                 <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm" title="Edit"
                                     class="rounded" onclick="window.location='{{ route('bi_checking.edit', $item->id) }}'" />
-                                
+
                                 <form action="{{ route('bi_checking.destroy', $item->id) }}" method="POST" class="d-inline">
                                     @csrf @method('DELETE')
-                                    <x-adminlte-button class="show_confirm rounded" data-nama="BI Checking {{ $item->konsumen->nama_konsumen }}"
+                                    <x-adminlte-button class="show_confirm rounded" data-nama="Bi Checking {{ $item->konsumen->nama_konsumen }}"
                                         theme="danger" icon="fas fa-trash" size="sm" title="Hapus" type="submit" />
                                 </form>
                             </div>

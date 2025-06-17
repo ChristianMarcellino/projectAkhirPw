@@ -86,9 +86,9 @@ class BiCheckingController extends Controller
         Gate::authorize('admin-only');
         try {
             $biChecking->delete();
-            return redirect()->route('bi_checking.index')->with('success', 'Data BI Checking Berhasil Dihapus');
+            return redirect()->route('bi_checking.index')->with('success', 'Data Bi Checking Berhasil Dihapus');
         }catch (\Exception $e) {
-            return redirect()->route('bi_checking.index')->with('error', 'Gagal menghapus Data BI Checking.');
+            return redirect()->route('bi_checking.index')->with('error', 'Gagal menghapus Data Bi Checking.');
         }
     }
 }
