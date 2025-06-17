@@ -19,11 +19,16 @@
             <div id="containerDetailChecking"></div>
         </figure>
     </div>
+    <div class="col-6">
+        <figure class="highcharts-figure">
+            <div id="konsumenKeBank"></div>
+        </figure>
+    </div>
 </div>
 
 
 <!-- CSS -->
- 
+
  <style>
     .highcharts-figure,
 .highcharts-data-table table {
@@ -214,4 +219,51 @@ Highcharts.chart('containerRumahTersedia', {
     ]
 });
   </script>
+
+    <script>
+Highcharts.chart('konsumenKeBank', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Jumlah Konsumen yang datang ke Bank'
+    },
+    subtitle: {
+        text:
+            'Source: Laporan Perusahaan'
+    },
+    xAxis: {
+        categories: [@foreach ($konsumenKeBank as $item)
+        '{{ $item->nama_bank }}',
+        @endforeach],
+        crosshair: true,
+        accessibility: {
+            description: 'Nama Bank'
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: ' Jumlah Konsumen'
+        }
+    },
+    tooltip: {
+        valueSuffix: ' Konsumen'
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [
+        {
+            name: 'Jumlah Konsumen ',
+            data: [@foreach ($konsumenKeBank as $item)
+            {{ $item->jumlah }},
+            @endforeach]
+        }
+    ]
+});
+</script>
 @endsection

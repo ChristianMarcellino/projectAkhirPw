@@ -96,7 +96,7 @@ class KonsumenController extends Controller
             'alamat_konsumen' => 'max:100|required',
             'gaji' => 'required|integer|min:0|max:2000000000',
             'status_pernikahan' => 'required|in:Menikah,Cerai Hidup,Cerai Mati,Belum Menikah',
-            'rumah_id' => 'required|exists:rumah,id|unique:konsumen',
+            'rumah_id' => ['required','exists:rumah,id', Rule::unique('konsumen', 'rumah_id')->ignore($konsumen->id)],
             'bank_id' => 'required|max:60|exists:bank,id',
             'marketing_id' => 'required|exists:marketing,id'
         ]);

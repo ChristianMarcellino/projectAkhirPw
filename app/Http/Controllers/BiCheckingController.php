@@ -69,7 +69,7 @@ class BiCheckingController extends Controller
     {
         Gate::authorize('admin-only');
         $input = $request->validate([
-            'konsumen_id' => ['required','exists:konsumen,id',Rule::unique('bi_checking','konsumen_id')->ignore($bi_checking->id)],
+            'konsumen_id' => ['required','exists:konsumen,id', Rule::unique('bi_checking','konsumen_id')->ignore($bi_checking->id)],
             'hasil_checking' => 'required|in:kol 1,kol 2,kol 3,kol 4,kol 5',
             'tanggal_checking' => 'required|date',
         ]);
