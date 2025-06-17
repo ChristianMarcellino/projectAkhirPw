@@ -14,7 +14,7 @@
             <div id="containerRumahTersedia"></div>
         </figure>
         <figure class="highcharts-figure">
-            <div id="container"></div>
+            <div id="containerDetailChecking"></div>
         </figure>
     </div>
 </div>
@@ -124,69 +124,53 @@
  </style>
 
  <!-- js -->
-  <script>
-
-    Highcharts.chart('containerDetailCheking', {
+ <script>
+    Highcharts.chart('containerDetailChecking', {
         chart: {
-            type: 'pie',
-            custom: {},
-            events: {
-                render() {
-                    const chart = this,
-                        series = chart.series[0];
-                    let customLabel = chart.options.chart.custom.label;
-
-                    if (!customLabel) {
-                        customLabel = chart.options.chart.custom.label =
-                            chart.renderer.label(
-                                'Total<br/>' +
-                                '<strong>' + series.data.reduce((a, b) => a + b.y, 0) + '</strong>'
-                            )
-                                .css({
-                                    color: '#000',
-                                    textAnchor: 'middle'
-                                })
-                                .add();
-                    }
-
-                    const x = series.center[0] + chart.plotLeft,
-                        y = series.center[1] + chart.plotTop -
-                            (customLabel.attr('height') / 2);
-
-                    customLabel.attr({ x, y });
-                    customLabel.css({
-                        fontSize: `${series.center[2] / 12}px`
-                    });
-                }
+            type: 'column'
+        },
+        title: {
+            text: 'Jumlah Konsumen Berdasarkan Col'
+        },
+        subtitle: {
+            text:
+                'Source: Laporan Bulanan'
+        },
+        xAxis: {
+            categories: [@foreach ($detailChecking as $item)
+            '{{ $item->jumlah_konsumen }}',
+            @endforeach],
+            crosshair: true,
+            accessibility: {
+                description: 'Nama Proyek'
             }
         },
-        title: { text: 'Detail Hasil Checking Konsumen' },
+        yAxis: {
+            min: 0,
+            title: {
+                text: ' Rumah'
+            }
+        },
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.0f}%</b>'
+            valueSuffix: ' Rumah'
         },
-        legend: { enabled: false },
         plotOptions: {
-            series: {
-                innerSize: '75%',
-                dataLabels: [{
-                    enabled: true,
-                    distance: 20,
-                    format: '{point.name}'
-                }, {
-                    enabled: true,
-                    distance: -15,
-                    format: '{point.percentage:.0f}%',
-                    style: { fontSize: '0.9em' }
-                }]
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
             }
         },
-        series: [{
-            name: 'Konsumen',
-            colorByPoint: true,
-            data: chartData
-        }]
+        series: [
+            {
+                name: [@foreach ($detailChecking as $item)
+                {{'$item->hasil_checking'}},@endforeach],
+                data: [@foreach ($detailChecking as $item)
+                {{ $item->jumlah_konsumen }},
+                @endforeach]
+            }
+        ]
     });
-  </script>
+      </script>
   <script>
 Highcharts.chart('containerRumahTersedia', {
     chart: {
