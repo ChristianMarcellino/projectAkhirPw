@@ -13,6 +13,8 @@
         <figure class="highcharts-figure">
             <div id="containerRumahTersedia"></div>
         </figure>
+    </div>
+    <div class="col-6">
         <figure class="highcharts-figure">
             <div id="containerDetailChecking"></div>
         </figure>
@@ -125,30 +127,30 @@
 
  <!-- js -->
  <script>
-    Highcharts.chart('containerDetailChecking', {
+    const categories = @json(array_map(fn($item) => $item->hasil_checking, $detailChecking));
+    const dataJumlah = @json(array_map(fn($item) => (int) $item->jumlah_konsumen, $detailChecking));
+
+   Highcharts.chart('containerDetailChecking', {
         chart: {
             type: 'column'
         },
         title: {
-            text: 'Jumlah Konsumen Berdasarkan Col'
+            text: 'Jumlah Konsumen Berdasarkan Hasil Checking'
         },
         subtitle: {
-            text:
-                'Source: Laporan Bulanan'
+            text: 'Source: Laporan Bulanan'
         },
         xAxis: {
-            categories: [@foreach ($detailChecking as $item)
-            '{{ $item->jumlah_konsumen }}',
-            @endforeach],
+            categories: categories,
             crosshair: true,
-            accessibility: {
-                description: 'Nama Proyek'
+            title: {
+                text: 'Hasil Checking'
             }
         },
         yAxis: {
             min: 0,
             title: {
-                text: ' Rumah'
+                text: 'Jumlah Konsumen (Rumah)'
             }
         },
         tooltip: {
@@ -160,17 +162,12 @@
                 borderWidth: 0
             }
         },
-        series: [
-            {
-                name: [@foreach ($detailChecking as $item)
-                {{'$item->hasil_checking'}},@endforeach],
-                data: [@foreach ($detailChecking as $item)
-                {{ $item->jumlah_konsumen }},
-                @endforeach]
-            }
-        ]
+        series: [{
+            name: 'Jumlah Konsumen',
+            data: dataJumlah
+        }]
     });
-      </script>
+</script>
   <script>
 Highcharts.chart('containerRumahTersedia', {
     chart: {
