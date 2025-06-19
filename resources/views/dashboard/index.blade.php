@@ -9,19 +9,24 @@
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
 <div class="row">
-    <div class="col-md-4 col-sm-6">
+    <div class="col-md-6 col-sm-12">
         <figure class="highcharts-figure">
             <div id="containerRumahTersedia"></div>
         </figure>
     </div>
-    <div class="col-md-4 col-sm-6">
+    <div class="col-md-6 col-sm-12">
         <figure class="highcharts-figure">
             <div id="containerDetailChecking"></div>
         </figure>
     </div>
-    <div class="col-md-4 col-sm-6">
+    <div class="col-md-6 col-sm-12">
         <figure class="highcharts-figure">
             <div id="konsumenKeBank"></div>
+        </figure>
+    </div>
+     <div class="col-md-6 col-sm-12">
+        <figure class="highcharts-figure">
+            <div id="containerStatusKonsumen"></div>
         </figure>
     </div>
 </div>
@@ -266,4 +271,56 @@ Highcharts.chart('konsumenKeBank', {
     ]
 });
 </script>
+
+
+
+
+  <script>
+Highcharts.chart('containerStatusKonsumen', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Jumlah Konsumen Berdasarkan Status Konsumen'
+    },
+    subtitle: {
+        text:
+            'Source: Laporan Bulanan'
+    },
+    xAxis: {
+        categories: [@foreach ($statusKonsumen as $item)
+        '{{ $item->status_pernikahan}}',
+        @endforeach],
+        crosshair: true,
+        accessibility: {
+            description: 'Status Pernikahan'
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: ' Jumlah Konsumen'
+        }
+    },
+    tooltip: {
+        valueSuffix: ' Konsumen'
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [
+        {
+            name: 'Jumlah Konsumen ',
+            data: [@foreach ($statusKonsumen as $item)
+            {{ $item->jumlah_konsumen }},
+            @endforeach]
+        }
+    ]
+});
+</script>
+
+
 @endsection

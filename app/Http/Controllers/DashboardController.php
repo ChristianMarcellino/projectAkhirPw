@@ -20,6 +20,9 @@ class DashboardController extends Controller
         JOIN bank ON konsumen.bank_id = bank.id
         GROUP BY bank.nama_bank');
 
-        return view('dashboard.index', compact('rumahTersedia','detailChecking', 'konsumenKeBank'));
+        $statusKonsumen = DB::select('select status_pernikahan, count(*) as jumlah_konsumen from konsumen
+        group by status_pernikahan;');
+
+        return view('dashboard.index', compact('rumahTersedia','detailChecking', 'konsumenKeBank','statusKonsumen'));
     }
 }
