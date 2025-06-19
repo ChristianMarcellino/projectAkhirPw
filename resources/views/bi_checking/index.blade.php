@@ -16,7 +16,6 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>ID Checking</th>
                         <th>Nama Konsumen</th>
                         <th>Hasil Checking</th>
                         <th>Tanggal Checking</th>
@@ -29,7 +28,6 @@
                     @forelse($biChecking as $item)
                         <tr>
                             <td>{{ $loop->iteration  + ($biChecking->currentPage() - 1) * $biChecking->perPage() }}</td>
-                            <td>{{ $item->id_checking }}</td>
                             <td>{{ $item->konsumen->nama_konsumen ?? '-'}}</td>
                             <td>{{ $item->hasil_checking }}</td>
                             <td>{{ $item->tanggal_checking }}</tdf>
