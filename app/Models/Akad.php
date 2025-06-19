@@ -13,6 +13,6 @@ class Akad extends Model
 
     public function konsumen()
     {
-        return $this->belongsTo(konsumen::class, 'konsumen_id', 'id');
+        return $this->belongsTo(Konsumen::class, 'konsumen_id', 'id');
     }
 }
