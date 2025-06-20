@@ -17,8 +17,8 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Bank</th>
-                        <th>Alamat bank</th>
-                        <th>No Telepon bank</th>
+                        <th>Alamat Bank</th>
+                        <th>No Telepon Bank</th>
                         <th>Nama Notaris</th>
                         @can ('admin-only')
                         <th>Aksi</th>
@@ -38,7 +38,7 @@
                                 <div class="d-flex align-items-center" style="gap:6px">
                                     <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm" title="Edit"
                                         class="rounded" onclick="window.location='{{ route('bank.edit', $item->id) }}'" />
-                                    
+
                                     <form action="{{ route('bank.destroy', $item->id) }}" method="POST" class="d-inline">
                                         @csrf @method('DELETE')
                                         <x-adminlte-button class="show_confirm rounded" data-nama="Bank {{ $item->nama_bank }}"

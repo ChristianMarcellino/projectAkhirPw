@@ -7,29 +7,30 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
-<div class="row">
-    <div class="col-md-6 col-sm-12">
-        <figure class="highcharts-figure">
-            <div id="containerRumahTersedia"></div>
-        </figure>
+<x-adminlte-card title="Dashboard" theme="info" icon="fas fa-list">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <figure class="highcharts-figure">
+                <div id="containerRumahTersedia"></div>
+            </figure>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <figure class="highcharts-figure">
+                <div id="containerDetailChecking"></div>
+            </figure>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <figure class="highcharts-figure">
+                <div id="konsumenKeBank"></div>
+            </figure>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <figure class="highcharts-figure">
+                <div id="containerStatusKonsumen"></div>
+            </figure>
+        </div>
     </div>
-    <div class="col-md-6 col-sm-12">
-        <figure class="highcharts-figure">
-            <div id="containerDetailChecking"></div>
-        </figure>
-    </div>
-    <div class="col-md-6 col-sm-12">
-        <figure class="highcharts-figure">
-            <div id="konsumenKeBank"></div>
-        </figure>
-    </div>
-     <div class="col-md-6 col-sm-12">
-        <figure class="highcharts-figure">
-            <div id="containerStatusKonsumen"></div>
-        </figure>
-    </div>
-</div>
+</x-adminlte-card>
 
 
 <!-- CSS -->
@@ -145,7 +146,7 @@
             type: 'column'
         },
         title: {
-            text: 'Jumlah Konsumen Berdasarkan Hasil Checking'
+            text: 'Statistik Hasil BI Checking Konsumen'
         },
         subtitle: {
             text: 'Source: Laporan Bulanan'
@@ -160,11 +161,11 @@
         yAxis: {
             min: 0,
             title: {
-                text: 'Jumlah Konsumen (Rumah)'
+                text: 'Jumlah Konsumen'
             }
         },
         tooltip: {
-            valueSuffix: ' Rumah'
+            valueSuffix: ' Konsumen'
         },
         plotOptions: {
             column: {
@@ -178,13 +179,14 @@
         }]
     });
 </script>
+
   <script>
 Highcharts.chart('containerRumahTersedia', {
     chart: {
         type: 'column'
     },
     title: {
-        text: 'Jumlah Rumah yang Tersedia per Proyek'
+        text: 'Jumlah Rumah Tersedia per Proyek'
     },
     subtitle: {
         text:
@@ -231,7 +233,7 @@ Highcharts.chart('konsumenKeBank', {
         type: 'column'
     },
     title: {
-        text: 'Jumlah Konsumen yang datang ke Bank'
+        text: 'Jumlah Konsumen per Bank'
     },
     subtitle: {
         text:
@@ -281,7 +283,7 @@ Highcharts.chart('containerStatusKonsumen', {
         type: 'column'
     },
     title: {
-        text: 'Jumlah Konsumen Berdasarkan Status Konsumen'
+        text: 'Jumlah Konsumen Berdasarkan Status Pernikahan'
     },
     subtitle: {
         text:
