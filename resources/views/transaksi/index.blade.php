@@ -32,7 +32,7 @@
                             <td>{{ $loop->iteration  + ($transaksi->currentPage() - 1) * $transaksi->perPage() }}</td>
                             <td>{{ $item->jenis_transaksi ?? '-' }}</td>
                             <td>{{ \Carbon\Carbon::parse($item->tanggal_transaksi)->format('d-m-Y') }}</td>
-                            <td>Rp{{ number_format($item->jumlah_pembayaran ?? '-', 0 ,',' ,'.' ) }}</td>
+                            <td>Rp{{ number_format($item->jumlah_pembayaran ?? 0, 0 ,',' ,'.' ) }}</td>
                             <td>{{ ucfirst($item->jenis_pembayaran ?? '-') }}</td>
                             <td>{{ $item->konsumen->nama_konsumen ?? '-' }}</td>
                             @can ('admin-only')
@@ -40,7 +40,7 @@
                                 <div class="d-flex align-items-center" style="gap:6px">
                                     <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm" title="Edit"
                                         class="rounded" onclick="window.location='{{ route('transaksi.edit', $item->id) }}'" />
-                                    
+
                                     <form action="{{ route('transaksi.destroy', $item->id) }}" method="POST" class="d-inline">
                                         @csrf @method('DELETE')
                                         <x-adminlte-button class="show_confirm rounded" data-nama="Transaksi {{ $item->jenis_transaksi }} {{ $item->konsumen->nama_konsumen }}"
@@ -52,7 +52,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7" class="text-center">Tidak ada data pengiriman berkas.</td>
+                            <td colspan="7" class="text-center">Tidak ada Data Transaksi.</td>
                         </tr>
                     @endforelse
                 </tbody>

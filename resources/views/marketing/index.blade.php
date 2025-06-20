@@ -32,13 +32,13 @@
                             <td>{{ $item->nik_marketing }}</td>
                             <td>{{ $item->nama_marketing }}</td>
                             <td>{{ $item->no_telp_marketing }}</td>
-                            <td>{{ $item->tanggal_masuk }}</tdf>
+                            <td>{{ $item->tanggal_masuk }}</td>
                             @can ('admin-only')
                             <td>
                                 <div class="d-flex align-items-center" style="gap:6px">
                                     <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm" title="Edit"
                                         class="rounded" onclick="window.location='{{ route('marketing.edit', $item->id) }}'" />
-                                    
+
                                     <form action="{{ route('marketing.destroy', $item->id) }}" method="POST" class="d-inline">
                                         @csrf @method('DELETE')
                                         <x-adminlte-button class="show_confirm rounded" data-nama="Marketing {{ $item->nama_marketing }}"

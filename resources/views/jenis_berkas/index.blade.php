@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <x-adminlte-button label="Tambah Bank" theme="success" icon="fas fa-plus" class="mb-3"
+    <x-adminlte-button label="Tambah Berkas" theme="success" icon="fas fa-plus" class="mb-3"
         onclick="window.location='{{ route('jenis_berkas.create') }}'" />
 
     <x-adminlte-card title="Daftar Jenis Berkas" theme="info" icon="fas fa-list">
@@ -32,7 +32,7 @@
                                 <div class="d-flex align-items-center" style="gap:6px">
                                     <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm" title="Edit"
                                         class="rounded" onclick="window.location='{{ route('jenis_berkas.edit', $item->id) }}'" />
-                                    
+
                                     <form action="{{ route('jenis_berkas.destroy', $item->id) }}" method="POST" class="d-inline">
                                         @csrf @method('DELETE')
                                         <x-adminlte-button class="show_confirm rounded" data-nama="Jenis Berkas {{ $item->jenis_Berkas }}"

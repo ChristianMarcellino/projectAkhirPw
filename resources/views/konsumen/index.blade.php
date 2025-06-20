@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-md-2">
                     <select name="marketing_id" class="form-control">
-                        <option value="">-- Filter Nama Marketing --</option>
+                        <option value="">Nama Marketing</option>
                         @foreach($marketing as $item)
                         <option value="{{ $item->id }}" {{ request('marketing_id') == $item->id ? 'selected' : '' }}>
                             {{ $item->nama_marketing }}
@@ -27,23 +27,23 @@
                 </div>
                 <div class="col-md-2">
                     <select name="status_pernikahan" class="form-control">
-                        <option value="">-- Filter Status Pernikahan --</option>
+                        <option value="">Status Pernikahan</option>
                         <option value="Menikah" {{ request('status_pernikahan') == 'Menikah' ? 'selected' : '' }}>Menikah</option>
                         <option value="Cerai Hidup" {{ request('status_pernikahan') == 'Cerai Hidup' ? 'selected' : '' }}>Cerai Hidup</option>
                         <option value="Cerai Mati" {{ request('status_pernikahan') == 'Cerai Mati' ? 'selected' : '' }}>Cerai Mati</option>
                         <option value="Belum Menikah" {{ request('status_pernikahan') == 'Belum Menikah' ? 'selected' : '' }}>Belum Menikah</option>
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <input class="form-control" type="number" name="gaji" id="gaji" value="{{ request('gaji') }}" placeholder="Cari Berdasarkan Gaji" />
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <button type="submit" class="btn btn-primary">Filter</button>
                     <a href="{{ route('konsumen.index') }}" class="btn btn-secondary">Reset</a>
                 </div>
             </div>
         </form>
-                
+
 
     <x-adminlte-card title="Daftar Konsumen" theme="info" icon="fas fa-list">
         <div class="table-responsive">
@@ -75,15 +75,15 @@
                             <td>{{ $item->alamat_konsumen }}</td>
                             <td>Rp{{number_format( $item->gaji ,0 ,',','.')}}</td>
                             <td>{{ $item->status_pernikahan }}</td>
-                            <td>{{ $item->rumah->no_shm_rumah }}</td>
-                            <td>{{ $item->bank->nama_bank }}</td>
-                            <td>{{ $item->marketing->nama_marketing }}</tdf>
+                            <td>{{ $item->rumah->no_shm_rumah  ?? '-' }}</td>
+                            <td>{{ $item->bank->nama_bank ?? '-' }}</td>
+                            <td>{{ $item->marketing->nama_marketing ?? '-'}}</td>
                             @can ('admin-only')
                             <td>
                                 <div class="d-flex align-items-center" style="gap:6px">
                                     <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm" title="Edit"
                                         class="rounded" onclick="window.location='{{ route('konsumen.edit', $item->id) }}'" />
-                                    
+
                                     <form action="{{ route('konsumen.destroy', $item->id) }}" method="POST" class="d-inline">
                                         @csrf @method('DELETE')
                                         <x-adminlte-button class="show_confirm rounded" data-nama="Konsumen {{ $item->nama_konsumen }}"
@@ -112,7 +112,7 @@
                 {{ $konsumen->appends(request()->query())->links('pagination::bootstrap-4') }}
             </div>
         </div>
-        
+
     </x-adminlte-card>
 @endsection
 

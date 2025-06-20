@@ -37,7 +37,7 @@ class ProyekController extends Controller
             'jumlah_unit' => 'required',
             'harga_rumah' => 'required||max:2000000000',
             'luas_tanah' => 'required',
-            'harga_kelebihan_tanah' => 'required||max:2000000000',
+            'harga_kelebihan_tanah' => 'required|max:2000000000',
             'alamat' => 'required'
         ]);
 
@@ -73,9 +73,9 @@ class ProyekController extends Controller
             'no_pbg' => ['required',Rule::unique('proyek','no_pbg')->ignore($proyek->id),'max:19'],
             'nama_proyek' => ['required',Rule::unique('proyek','nama_proyek')->ignore($proyek->id)],
             'jumlah_unit' => 'required',
-            'harga_rumah' => 'required||max:2000000000',
+            'harga_rumah' => 'required|max:2000000000',
             'luas_tanah' => 'required',
-            'harga_kelebihan_tanah' => 'required||max:2000000000',
+            'harga_kelebihan_tanah' => 'required|max:2000000000',
             'alamat' => 'required'
         ]);
 

@@ -7,13 +7,9 @@
 @endsection
 
 @section('content')
-<div class="table-responsive">     
+<div class="table-responsive">
     <x-adminlte-button label="Tambah Rumah" theme="success" icon="fas fa-plus" class="mb-3"
         onclick="window.location='{{ route('rumah.create') }}'" />
-        <form action="{{ route('rumah.index') }}" method="GET">
-
-        </form>
-
         <form method="GET" action="{{ route('rumah.index') }}" class="mb-3">
             <div class="row">
                 <div class="col-md-3">
@@ -46,7 +42,7 @@
 
     <x-adminlte-card title="Daftar Rumah" theme="info" icon="fas fa-list">
         <div class="table-responsive">
-            
+
             <table class="table table-bordered table-hover table-striped w-100">
                 <thead>
                     <tr>
@@ -71,7 +67,7 @@
                             <td>{{ $item->blok_rumah }}</td>
                             <td>Rp{{ number_format($item->harga_dp, 0, ',', '.') }}</td>
                             <td>{{ $item->proyek->nama_proyek ?? '-' }}</td>
-                            <td>{{ $item->luas_tanah_rumah }}</td>
+                            <td>{{ $item->luas_tanah_rumah }} m²</td>
                             <td>{{ $item->status_penjualan }}</td>
                             <td>Rp{{ number_format($item->harga_dp + $item->proyek->harga_rumah + ($item->luas_tanah_rumah- $item->proyek->luas_tanah)*1350000, 0, ',', '.') }}</td>
                             @can ('admin-only')
@@ -79,7 +75,7 @@
                                 <div class="d-flex align-items-center" style="gap:6px">
                                     <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm" title="Edit"
                                         class="rounded" onclick="window.location='{{ route('rumah.edit', $item->id) }}'" />
-                                    
+
                                     <form action="{{ route('rumah.destroy', $item->id) }}" method="POST" class="d-inline">
                                         @csrf @method('DELETE')
                                         <x-adminlte-button class="show_confirm rounded" data-nama="Rumah {{ $item->blok_rumah }} {{ $item->proyek->nama_proyek }}"

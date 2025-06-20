@@ -31,14 +31,14 @@
                             <td>{{ $loop->iteration  + ($notaris->currentPage() - 1) * $notaris->perPage() }}</td>
                             <td>{{ $item->nik_notaris }}</td>
                             <td>{{ $item->nama_notaris }}</td>
-                            <td>{{ $item->alamat_notaris }}</tdf>
-                            <td>{{ $item->no_telp_notaris }}</tdf>
+                            <td>{{ $item->alamat_notaris }}</td>
+                            <td>{{ $item->no_telp_notaris }}</td>
                            @can ('admin-only')
                            <td>
                             <div class="d-flex align-items-center" style="gap:6px">
                                 <x-adminlte-button theme="primary" icon="fas fa-edit" size="sm" title="Edit"
                                     class="rounded" onclick="window.location='{{ route('notaris.edit', $item->id) }}'" />
-                                
+
                                 <form action="{{ route('notaris.destroy', $item->id) }}" method="POST" class="d-inline">
                                     @csrf @method('DELETE')
                                     <x-adminlte-button class="show_confirm rounded" data-nama="Notaris {{ $item->nama_notaris }}"

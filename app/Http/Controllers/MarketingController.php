@@ -68,7 +68,7 @@ class MarketingController extends Controller
         $input = $request->validate([
             'nik_marketing' => ['max:16','required',Rule::unique('marketing', 'nik_marketing')->ignore($marketing->id)],
             'nama_marketing' => 'max:50|required',
-            'no_telp_marketing' => ['required', 'max:13', 'regex:/^08[0-9]{8,11}$/'],
+            'no_telp_marketing' => ['required', 'max:13', 'regex:/^(08|07)[0-9]{8,11}$/'],
             'tanggal_masuk' => 'required'
         ]);
 
